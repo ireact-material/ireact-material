@@ -29,6 +29,7 @@ export default defineConfig({
 		"ireact-material/es": path.join(__dirname, "components"),
 		// Change ireact-material from `index.js` to `.dumi/theme/ireact-material.js` to remove deps of root style
 		"ireact-material": require.resolve("./.dumi/theme/ireact-material.js"),
+		ireactmaterial: require.resolve("./.dumi/theme/ireact-material.js"),
 	},
 	// 配置额外的 babel 插件集。可传入插件集地址或插件集函数
 	extraBabelPresets: ["@emotion/babel-preset-css-prop"],
