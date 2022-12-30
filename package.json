@@ -17,11 +17,6 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "lib/index.js",
-  "unpkg": "dist/ireact-material.min.js",
-  "module": "es/index.js",
-  "types": "dist/index.d.ts",
-  "typings": "es/index.d.ts",
   "files": [
     "dist",
     "es",

@@ -1,4 +1,12 @@
 module.exports = {
+	root: true,
+	env: {
+		browser: true,
+		node: true,
+		jasmine: true,
+		jest: true,
+		es6: true,
+	},
 	extends: [
 		"airbnb",
 		"prettier",
@@ -8,13 +16,7 @@ module.exports = {
 		"plugin:import/typescript",
 		"plugin:markdown/recommended",
 	],
-	env: {
-		browser: true,
-		node: true,
-		jasmine: true,
-		jest: true,
-		es6: true,
-	},
+
 	// 添加共享设置
 	settings: {
 		react: {
@@ -238,6 +240,8 @@ module.exports = {
 		],
 		// https://github.com/typescript-eslint/typescript-eslint/issues/2528#issuecomment-689369395
 		"no-undef": 0,
+		// 判读分号
+		semi: ["error", "always"],
 	},
 	globals: {
 		gtag: true,

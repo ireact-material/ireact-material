@@ -10,17 +10,11 @@ export * from "./style";
 export * from "./size";
 export * from "./font";
 
-export interface CommonMapToken extends StyleMapToken {
-	// Motion
-	motionDurationFast: string;
-	motionDurationMid: string;
-	motionDurationSlow: string;
-}
+export interface CommonMapToken extends StyleMapToken {}
 
 // ======================================================================
-// ==                         Map Token                         ==
+// ==             梯度变量基于 Seed 派生的梯度变量                         ==
 // ======================================================================
-// 🔥🔥🔥🔥🔥🔥🔥 DO NOT MODIFY THIS. PLEASE CONTACT DESIGNER. 🔥🔥🔥🔥🔥🔥🔥
 
 export interface MapToken
 	extends SeedToken,

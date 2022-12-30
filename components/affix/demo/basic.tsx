@@ -3,7 +3,7 @@ import { Affix } from "ireact-material";
 
 const App: React.FC = () => {
 	const [top, setTop] = useState(100);
-	const [bottom, setBottom] = useState(10);
+	// const [bottom, setBottom] = useState(10);
 
 	return (
 		<>
@@ -13,8 +13,10 @@ const App: React.FC = () => {
 						height: "100px",
 						width: "100px",
 						background: "yellow",
+						fontSize: "14px",
 					}}
 				>
+					<a>12211</a>
 					Affix top {top}
 				</div>
 			</Affix>

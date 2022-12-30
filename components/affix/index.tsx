@@ -27,11 +27,11 @@ function getDefaultTarget() {
 
 class Affix extends React.Component<InternalAffixProps, AffixState> {
 	state: AffixState = {
-		// 状态
+		// 判断是否可以执行
 		status: AffixStatus.None,
 		// 是否固定
 		fixed: false,
-		// 上一个target
+		// 上一个目标节点
 		prevTarget: null,
 	};
 
@@ -44,6 +44,7 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 	// setTimeout
 	private timeout: NodeJS.Timeout | null;
 
+	// 公共方法
 	context: ConfigConsumerProps;
 
 	// 获取目标节点默认 window
@@ -51,10 +52,12 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 		const { getTargetContainer } = this.context;
 		const { target } = this.props;
 
+		// 有设置自定义 target
 		if (target !== undefined) {
 			return target;
 		}
 
+		// 有外部配置滚动监听容器
 		return getTargetContainer ?? getDefaultTarget;
 	}
 
@@ -62,11 +65,11 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 		const targetFunc = this.getTargetFunc();
 
 		if (targetFunc) {
-			// [Legacy] Wait for parent component ref has its value.
-			// We should use target as directly element instead of function which makes element check hard.
+			// 等待父组件 ref 有它的值
 			this.timeout = setTimeout(() => {
 				// 添加观察目标
 				addObserveTarget(targetFunc(), this);
+
 				// 初始化执行一次事件
 				this.updatePosition();
 			});
@@ -81,7 +84,9 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 		// 新的目标节点
 		const newTarget = targetFunc?.() || null;
 
+		// 当前节点改变了
 		if (prevTarget !== newTarget) {
+			// 销毁事件监听
 			removeObserveTarget(this);
 
 			// 有新的目标元素
@@ -111,11 +116,29 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 		this.calculateScrollPosition();
 	}
 
+	componentWillUnmount() {
+		// 销毁倒计时
+		if (this.timeout) {
+			clearTimeout(this.timeout);
+			this.timeout = null;
+		}
+
+		// 销毁事件监听
+		removeObserveTarget(this);
+
+		// 销毁节流
+		this.updatePosition.cancel();
+		this.lazyUpdatePosition.cancel();
+	}
+
 	// 初始化状态
 	initData = () => {
 		this.setState({
-			status: AffixStatus.Prepare,
+			// 可以执行更新位置
+			status: AffixStatus.Start,
+			// 初始化固定样式
 			affixStyle: undefined,
+			// 初始化占位样式
 			placeholderStyle: undefined,
 		});
 	};
@@ -163,7 +186,26 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 
 			//  是否有占位节点
 			if (targetNode && this.placeholderNode) {
-				console.log("---");
+				// 获取目标节点的元素大小及其相对于视口的位置的信息
+				const targetRect = getTargetRect(targetNode);
+				// 获取占位节点的元素大小及其相对于视口的位置的信息
+				const placeholderReact = getTargetRect(this.placeholderNode);
+				// 固定的顶部
+				const fixedTop = getFixedTop(placeholderReact, targetRect, offsetTop);
+				// 固定到底部
+				const fixedBottom = getFixedBottom(
+					placeholderReact,
+					targetRect,
+					offsetBottom,
+				);
+
+				// 有固定到顶部 || 有固定到底部
+				if (
+					(fixedTop !== undefined && affixStyle.top === fixedTop) ||
+					(fixedBottom !== undefined && affixStyle.bottom === fixedBottom)
+				) {
+					return;
+				}
 			}
 		}
 
@@ -178,11 +220,12 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 		// 事件
 		const { onChange } = this.props;
 
+		// 获取目标节点
 		const targetFunc = this.getTargetFunc();
 
-		// status !== Prepare || 没有固定节点 || 没有占位节点 || 没有目标节点
+		// status !== Start || 没有固定节点 || 没有占位节点 || 没有目标节点
 		if (
-			status !== AffixStatus.Prepare ||
+			status !== AffixStatus.Start ||
 			!this.fixedNode ||
 			!this.placeholderNode ||
 			!targetFunc
@@ -201,6 +244,7 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 			return;
 		}
 
+		// 设置为不能执行，等待节流方法执行
 		const newState: Partial<AffixState> = {
 			status: AffixStatus.None,
 		};
@@ -209,7 +253,9 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 		const targetRect = getTargetRect(targetNode);
 		// 获取占位节点的元素大小及其相对于视口的位置的信息
 		const placeholderReact = getTargetRect(this.placeholderNode);
+		// 固定的顶部
 		const fixedTop = getFixedTop(placeholderReact, targetRect, offsetTop);
+		// 固定到底部
 		const fixedBottom = getFixedBottom(
 			placeholderReact,
 			targetRect,
@@ -240,27 +286,10 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 				width: placeholderReact.width,
 				height: placeholderReact.height,
 			};
-			console.log("newState", fixedTop);
 
 			newState.affixStyle.top = fixedTop;
 			newState.affixStyle.bottom = fixedBottom;
 		}
-		// // 固定底部
-		// else if (fixedBottom !== undefined) {
-		//   // 节点固定
-		//   newState.affixStyle = {
-		//     position: 'fixed',
-		//     top: fixedBottom,
-		//     width: placeholderReact.width,
-		//     height: placeholderReact.height,
-		//   }
-
-		//   // 设置占位节点尺寸
-		//   newState.placeholderStyle = {
-		//     width: placeholderReact.width,
-		//     height: placeholderReact.height,
-		//   }
-		// }
 
 		// 有设置元素固定节点
 		newState.fixed = !!newState.affixStyle;
@@ -307,6 +336,7 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 						ref={this.saveFixedNode}
 						style={affixStyle}
 					>
+						{/* 监听节点变化 */}
 						<ResizeObserver onResize={this.updatePosition}>
 							{children}
 						</ResizeObserver>
@@ -317,11 +347,12 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 	}
 }
 
+// 创建一个 React 组件，将它接收到的ref属性转发给树中下方的另一个组件
 const AffixFC = React.forwardRef<Affix, AffixProps>((props, ref) => {
 	const { prefixCls: customizePrefixCls } = props;
 	const { getPrefixCls } = React.useContext(ConfigContext);
 
-	// 获取样式名称
+	// 获取样式名称 ireact-affix
 	const affixPrefixCls = getPrefixCls("affix", customizePrefixCls);
 
 	// 样式
