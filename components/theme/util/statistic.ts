@@ -93,7 +93,9 @@ export default function statisticToken<T extends object>(token: T) {
 			componentToken,
 		) => {
 			statistic[componentName] = {
+				// 变量名称
 				global: Array.from(tokenKeys!),
+				// 组件名称
 				component: componentToken,
 			};
 		};

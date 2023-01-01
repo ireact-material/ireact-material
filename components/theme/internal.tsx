@@ -1,10 +1,13 @@
-import type { CSSInterpolation, Theme } from "@ant-design/cssinjs";
+import React from "react";
+
+// cssinjs
 import {
 	createTheme,
 	useCacheToken,
 	useStyleRegister,
 } from "@ant-design/cssinjs";
-import React from "react";
+import type { CSSInterpolation, Theme } from "@ant-design/cssinjs";
+
 // 组件库版本
 import version from "../version";
 
@@ -42,7 +45,8 @@ import type {
 } from "./interface";
 
 // 创建主题
-// Same as new Theme, but will always return same one if `derivative` not changed.
+// Same as new Theme,
+// but will always return same one if `derivative` not changed.
 const defaultTheme = createTheme(defaultDerivative);
 
 // ================================ Context =================================
@@ -142,14 +146,14 @@ export type {
 export {
 	// 预设颜色
 	presetColors,
-	// statistic.tsx
+	// statistic方法
 	// 统计使用了那些公共变量对象
 	statistic,
 	// 用于统计使用了那些公共变量
 	statisticToken,
 	// 合并变量
 	mergeToken,
-	// hooks
+	// hooks方法
 	// 向全局样式表注册一个样式
 	useStyleRegister,
 	// 整理组件样式hook

@@ -1,3 +1,4 @@
+import type * as React from "react";
 import type { MapToken } from "./maps";
 
 // ======================================================================
@@ -7,4 +8,7 @@ import type { MapToken } from "./maps";
 export interface AliasToken extends MapToken {
 	// a链接颜色
 	colorLink: string;
+
+	// 文本的修饰线外观
+	textDecoration: React.CSSProperties["textDecoration"];
 }

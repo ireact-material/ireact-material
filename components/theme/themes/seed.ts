@@ -22,11 +22,15 @@ const seedToken: SeedToken = {
 	// 预设调色板
 	...defaultPresetColors,
 
-	// color
+	// 信息颜色
 	colorInfo: "#5B8EFF",
 
 	// zIndex
 	zIndexBase: 0,
+
+	// 动画时间
+	motionUnit: 0.1,
+	motionBase: 0,
 };
 
 export default seedToken;

@@ -7,11 +7,12 @@ type RawMergedToken = MapToken &
 	OverrideToken & { override: Partial<AliasToken> };
 
 /**
- * 格式变量
- *
+ * 格式化变量
+ * 基础变量 -> 梯度变量 -> 别名变量
  * Seed (designer) > Derivative (designer) > Alias (developer).
  *
- * 合并 seed & derivative & override token and 生成别名令牌
+ * 合并 基础变量 & 梯度变量 & 覆盖变量 生成别名变量
+ * Merge seed & derivative & override token and generate alias token for developer.
  * @returns
  */
 export default function formatToken(
@@ -19,26 +20,32 @@ export default function formatToken(
 ): AliasToken {
 	const { override, ...restToken } = derivativeToken;
 
-	// 需要覆盖的样式变量
+	// 需要覆盖的变量
 	const overrideTokens = { ...override };
 
 	// 合并样式变量
 	const mergedToken = {
-		// 梯度颜色
+		// 所有内部定义的变量
 		...restToken,
-		// 需要覆盖的样式变量
+		// 需要覆盖的变量
 		...overrideTokens,
 	};
 
 	// 别名变量 批量控制某些共性组件的样式
 	const aliasToken: AliasToken = {
-		// 合并token
+		// 合并样式变量
 		...mergedToken,
 
+		// ---------链接颜色
 		// a链接颜色
 		colorLink: mergedToken.colorInfoText,
 
-		// 覆盖 别名变量
+		// ---------文本样式
+
+		// 文本的修饰线外观
+		textDecoration: "none",
+
+		// 需要覆盖的样式变量
 		...overrideTokens,
 	};
 

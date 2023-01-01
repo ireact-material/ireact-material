@@ -10,8 +10,10 @@ interface ColorWarningMapToken {}
 interface ColorInfoMapToken {
 	/**
 	 * @name 信息色的文本默认态
+	 *
+	 * infoColors[5]
 	 */
-	colorInfoText: string; // 9
+	colorInfoText: string;
 }
 
 interface ColorErrorMapToken {}

@@ -24,7 +24,7 @@ export type OverrideComponent = keyof OverrideTokenWithoutDerivative;
 export type GlobalTokenWithComponent<ComponentName extends OverrideComponent> =
 	GlobalToken & ComponentTokenMap[ComponentName];
 
-// 样式
+// 样式class
 export interface StyleInfo<ComponentName extends OverrideComponent> {
 	// 主题id
 	hashId: string;
@@ -63,9 +63,9 @@ export default function genComponentStyleHook<
 	component: ComponentName,
 	// 样式方法
 	styleFn: (
-		// token
+		// 组件名称
 		token: FullToken<ComponentName>,
-		// 样式
+		// 样式class
 		info: StyleInfo<ComponentName>,
 	) => CSSInterpolation,
 	// 获取对应令牌的数据

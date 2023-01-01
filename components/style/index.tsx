@@ -5,7 +5,7 @@ import type { AliasToken } from "../theme/internal";
 export const genLinkStyle = (token: AliasToken): CSSObject => ({
 	a: {
 		color: token.colorLink,
-		textDecoration: token.linkDecoration,
+		textDecoration: token.textDecoration,
 		// 删除 IE 10 中活动链接的灰色背景。
 		backgroundColor: "transparent",
 		outline: "none",

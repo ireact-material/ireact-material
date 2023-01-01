@@ -3,8 +3,13 @@ import { generate } from "@ant-design/colors";
 // 预设调色板
 import { defaultPresetColors } from "../seed";
 
-// 共享颜色
+// 生成调色版
 import genColorMapToken from "../shared/genColorMapToken";
+// 公共变量
+import genCommonMapToken from "../shared/genCommonMapToken";
+
+// 生成调色版
+import { generateColorPalettes } from "./colors";
 
 // type
 import type {
@@ -43,13 +48,17 @@ export default function derivative(token: SeedToken): MapToken {
 			return prev;
 		}, {} as ColorPalettes);
 
-	genColorMapToken(token);
 	return {
+		// 变量
+		...token,
 		...colorPalettes,
 
-		colorInfoText: "red",
-		// ...genColorMapToken(token),
+		// 生成调色版
+		...genColorMapToken(token, {
+			generateColorPalettes,
+		}),
 
-		...token,
+		// 公共变量
+		...genCommonMapToken(token),
 	};
 }
