@@ -2,7 +2,7 @@ import assert from "assert";
 import { type HastRoot, type UnifiedTransformer, unistUtilVisit } from "dumi";
 
 /**
- * plugin for modify hast tree when docs compiling
+ * 文档编译时修改 hast 树的插件
  */
 function rehypeAntd(): UnifiedTransformer<HastRoot> {
 	return (tree, vFile) => {

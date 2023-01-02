@@ -6,7 +6,7 @@ interface AffixToken extends FullToken<"Affix"> {
 	zIndexPopup: number;
 }
 
-// 为 ireact-affix 添加样式
+// 为 affix 添加样式
 const genSharedAffixStyle: GenerateStyle<AffixToken> = (token): CSSObject => {
 	const { componentCls } = token;
 

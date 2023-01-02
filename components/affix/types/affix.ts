@@ -18,6 +18,7 @@ export interface AffixProps {
 	children: React.ReactNode;
 }
 
+// 内部props方法
 export interface InternalAffixProps extends AffixProps {
 	// 组件前缀
 	affixPrefixCls: string;
@@ -35,6 +36,7 @@ export enum AffixStatus {
 	Start,
 }
 
+// state类型
 export interface AffixState {
 	// 固定节点style
 	affixStyle?: React.CSSProperties;

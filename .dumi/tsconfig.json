@@ -8,9 +8,9 @@
     "baseUrl": "../",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "antd": ["components/index.tsx"],
-      "antd/es/*": ["components/*"],
-      "dumi/theme/*": [".dumi/theme/*"]
+      "ireact-material": ["components/index.tsx"],
+      "ireact-material/es/*": ["components/*"],
+      "ireact-material/theme/*": [".dumi/theme/*"]
     }
   },
   "include": ["./**/*", "../site/theme/template/Content"]

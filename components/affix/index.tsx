@@ -17,8 +17,8 @@ import {
 } from "./utils";
 
 // type
-import { AffixStatus } from "./types";
-import type { AffixProps, InternalAffixProps, AffixState } from "./types";
+import { AffixStatus } from "./types/affix";
+import type { AffixProps, InternalAffixProps, AffixState } from "./types/affix";
 import type { ConfigConsumerProps } from "../config-provider";
 
 function getDefaultTarget() {

@@ -1,6 +1,6 @@
 import addEventListener from "rc-util/lib/Dom/addEventListener";
 
-import type { BindElement, ObserverInstance } from "./types";
+import type { BindElement, ObserverInstance } from "./types/affix";
 
 // 监听的事件
 const TRIGGER_EVENTS = [
