@@ -31,7 +31,7 @@ export type {
 	SizeMapToken,
 	FontMapToken,
 	StyleMapToken,
-} from "./maps";
+} from "./token-maps";
 
 // 导出别名变量
 export type { AliasToken } from "./alias";

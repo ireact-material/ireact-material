@@ -44,7 +44,7 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
 	// setTimeout
 	private timeout: NodeJS.Timeout | null;
 
-	// 公共方法
+	// 全局化配置props
 	context: ConfigConsumerProps;
 
 	// 获取目标节点默认 window

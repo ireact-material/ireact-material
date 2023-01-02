@@ -8,8 +8,8 @@ import genColorMapToken from "../shared/genColorMapToken";
 // 公共变量
 import genCommonMapToken from "../shared/genCommonMapToken";
 
-// 生成调色版
-import { generateColorPalettes } from "./colors";
+// 生成调色版 | 生成公共颜色调色版
+import { generateColorPalettes, generateNeutralColorPalettes } from "./colors";
 
 // type
 import type {
@@ -17,7 +17,7 @@ import type {
 	MapToken,
 	PresetColorType,
 	ColorPalettes,
-} from "../../interface";
+} from "../../types";
 
 /**
  * 导出梯度变量
@@ -56,6 +56,7 @@ export default function derivative(token: SeedToken): MapToken {
 		// 生成调色版
 		...genColorMapToken(token, {
 			generateColorPalettes,
+			generateNeutralColorPalettes,
 		}),
 
 		// 公共变量

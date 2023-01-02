@@ -11,44 +11,21 @@ import { ConfigContext } from "../../config-provider/context";
 // 合并数据 | 用于统计使用了那些公共变量
 import { mergeToken, statisticToken, useToken } from "../internal";
 
+// type
 import type { UseComponentStyleResult } from "../internal";
-import type { ComponentTokenMap, GlobalToken } from "../interface";
-
-// 组件令牌
-export type OverrideTokenWithoutDerivative = ComponentTokenMap;
-
-// 需要覆盖的组件 key
-export type OverrideComponent = keyof OverrideTokenWithoutDerivative;
-
-// 全局组建变量
-export type GlobalTokenWithComponent<ComponentName extends OverrideComponent> =
-	GlobalToken & ComponentTokenMap[ComponentName];
-
-// 样式class
-export interface StyleInfo<ComponentName extends OverrideComponent> {
-	// 主题id
-	hashId: string;
-	// 前缀
-	prefixCls: string;
-	// root 别名 -> ireact
-	rootPrefixCls: string;
-	// 图标class
-	iconPrefixCls: string;
-	// 覆盖组件变量
-	overrideComponentToken: ComponentTokenMap[ComponentName];
-}
-
-// 合并的class变量
-export type TokenWithCommonCls<T> = T & {
-	/** Wrap component class with `.` prefix */
-	componentCls: string;
-	/** Origin prefix which do not have `.` prefix */
-	prefixCls: string;
-	/** Wrap icon class with `.` prefix */
-	iconCls: string;
-	/** Wrap ant prefixCls class with `.` prefix */
-	ireactCls: string;
-};
+import type { GlobalToken } from "../types";
+import type {
+	// 组件令牌
+	OverrideComponent,
+	// 全局组建变量
+	GlobalTokenWithComponent,
+	// 组件令牌
+	OverrideTokenWithoutDerivative,
+	// 样式class
+	StyleInfo,
+	// 合并的class变量
+	TokenWithCommonCls,
+} from "./types/genComponentStyleHook";
 
 // 令牌
 export type FullToken<ComponentName extends OverrideComponent> =

@@ -1,7 +1,10 @@
 import { generate } from "@ant-design/colors";
 
+// 颜色算法
+import { getAlphaColor } from "./colorAlgorithm";
+
 // type
-import type { GenerateColorMap } from "../ColorMap";
+import type { GenerateColorMap, GenerateNeutralColorMap } from "../ColorMap";
 
 /**
  * 生成调色版
@@ -25,4 +28,16 @@ export const generateColorPalettes: GenerateColorMap = (baseColor: string) => {
 };
 
 // 生成公共颜色调色版
-export const generateNeutralColorPalettes = () => {};
+export const generateNeutralColorPalettes: GenerateNeutralColorMap = (
+	bgBaseColor: string,
+	textBaseColor: string,
+) => {
+	// 背景颜色
+	// const colorBgBase = bgBaseColor || '#fff';
+	// 文字颜色
+	const colorTextBase = textBaseColor || "#000";
+
+	return {
+		colorTextQuaternary: getAlphaColor(colorTextBase, 0.25),
+	};
+};

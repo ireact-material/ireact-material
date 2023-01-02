@@ -1,5 +1,5 @@
 // type
-import type { CommonMapToken, SeedToken } from "../../interface";
+import type { CommonMapToken, SeedToken } from "../../types";
 
 // 公共变量
 export default function genCommonMapToken(token: SeedToken): CommonMapToken {

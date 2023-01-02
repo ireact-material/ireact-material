@@ -12,7 +12,7 @@ import type { CSSInterpolation, Theme } from "@ant-design/cssinjs";
 import version from "../version";
 
 // 预设颜色
-import { presetColors } from "./interface";
+import { presetColors } from "./types";
 
 // 导出生成的梯度变量
 import defaultDerivative from "./themes/default";
@@ -42,7 +42,30 @@ import type {
 	PresetColorType,
 	// 基础变量
 	SeedToken,
-} from "./interface";
+} from "./types";
+
+// 组件最终样式
+export type UseComponentStyleResult = [
+	(node: React.ReactNode) => React.ReactElement,
+	string,
+];
+
+// 生成样式
+export type GenerateStyle<
+	ComponentToken extends object = AliasToken,
+	ReturnType = CSSInterpolation,
+> = (token: ComponentToken) => ReturnType;
+
+export type {
+	// 基础变量
+	SeedToken,
+	// 别名变量
+	AliasToken,
+	// 预设颜色类型
+	PresetColorType,
+	// 组件完整的变量
+	FullToken,
+};
 
 // 创建主题
 // Same as new Theme,
@@ -119,29 +142,6 @@ export function useToken(): [Theme<SeedToken, MapToken>, GlobalToken, string] {
 		hashed ? hashId : "",
 	];
 }
-
-// 组件最终样式
-export type UseComponentStyleResult = [
-	(node: React.ReactNode) => React.ReactElement,
-	string,
-];
-
-// 生成样式
-export type GenerateStyle<
-	ComponentToken extends object = AliasToken,
-	ReturnType = CSSInterpolation,
-> = (token: ComponentToken) => ReturnType;
-
-export type {
-	// 基础变量
-	SeedToken,
-	// 别名变量
-	AliasToken,
-	// 预设颜色类型
-	PresetColorType,
-	// 组件完整的变量
-	FullToken,
-};
 
 export {
 	// 预设颜色

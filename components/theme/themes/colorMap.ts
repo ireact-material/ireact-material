@@ -1,3 +1,5 @@
+import type { ColorNeutralMapToken } from "../types";
+
 // 颜色循环
 export interface ColorMap {
 	1: string;
@@ -15,7 +17,8 @@ export interface ColorMap {
 // 生成调色版颜色
 export type GenerateColorMap = (baseColor: string) => ColorMap;
 
-// export type GenerateNeutralColorMap = (
-//   bgBaseColor: string,
-//   textBaseColor: string,
-// ) => ColorNeutralMapToken;
+// 生成公共颜色调色版
+export type GenerateNeutralColorMap = (
+	bgBaseColor: string,
+	textBaseColor: string,
+) => ColorNeutralMapToken;

@@ -14,24 +14,29 @@ export const genLinkStyle = (token: AliasToken): CSSObject => ({
 		// 删除 iOS 8+ 和 Safari 8+ 中链接下划线中的空白
 		"-webkit-text-decoration-skip": "objects",
 
+		// hover
 		"&:hover": {
 			color: token.colorLinkHover,
 		},
 
+		// active
 		"&:active": {
 			color: token.colorLinkActive,
 		},
 
+		// active,hover
 		[`&:active,&:hover`]: {
-			textDecoration: token.linkHoverDecoration,
+			textDecoration: token.textDecoration,
 			outline: 0,
 		},
 
+		// focus
 		"&:focus": {
-			textDecoration: token.linkFocusDecoration,
+			textDecoration: token.textDecoration,
 			outline: 0,
 		},
 
+		// 禁用
 		"&[disabled]": {
 			color: token.colorTextDisabled,
 			cursor: "not-allowed",
@@ -50,6 +55,7 @@ export const genCommonStyle = (
 		[rootPrefixSelector]: {
 			boxSizing: "border-box",
 
+			// before,after
 			"&::before, &::after": {
 				boxSizing: "border-box",
 			},
@@ -57,6 +63,7 @@ export const genCommonStyle = (
 			[rootPrefixSelector]: {
 				boxSizing: "border-box",
 
+				// before,after
 				"&::before, &::after": {
 					boxSizing: "border-box",
 				},

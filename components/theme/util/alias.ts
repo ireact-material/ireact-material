@@ -1,10 +1,5 @@
-// type
-// 别名变量
-import type { AliasToken, MapToken, OverrideToken } from "../interface";
-
-/** Raw merge of `@ant-design/cssinjs` token. Which need additional process */
-type RawMergedToken = MapToken &
-	OverrideToken & { override: Partial<AliasToken> };
+import type { AliasToken } from "../types";
+import type { RawMergedToken } from "./types/alias";
 
 /**
  * 格式化变量
@@ -16,6 +11,7 @@ type RawMergedToken = MapToken &
  * @returns
  */
 export default function formatToken(
+	// 合并原始变量
 	derivativeToken: RawMergedToken,
 ): AliasToken {
 	const { override, ...restToken } = derivativeToken;
@@ -36,9 +32,14 @@ export default function formatToken(
 		// 合并样式变量
 		...mergedToken,
 
+		// ---------text颜色
+		colorTextDisabled: mergedToken.colorTextQuaternary,
+
 		// ---------链接颜色
 		// a链接颜色
 		colorLink: mergedToken.colorInfoText,
+		colorLinkHover: mergedToken.colorInfoHover,
+		colorLinkActive: mergedToken.colorInfoActive,
 
 		// ---------文本样式
 

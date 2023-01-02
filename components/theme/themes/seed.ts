@@ -25,6 +25,10 @@ const seedToken: SeedToken = {
 	// 信息颜色
 	colorInfo: "#5B8EFF",
 
+	// 基础颜色
+	colorTextBase: "",
+	colorBgBase: "",
+
 	// zIndex
 	zIndexBase: 0,
 
