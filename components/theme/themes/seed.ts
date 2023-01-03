@@ -35,6 +35,9 @@ const seedToken: SeedToken = {
 	// 动画时间
 	motionUnit: 0.1,
 	motionBase: 0,
+
+	// 字体
+	fontSize: 14,
 };
 
 export default seedToken;

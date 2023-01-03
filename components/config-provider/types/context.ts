@@ -17,6 +17,8 @@ export interface ConfigConsumerProps {
 	csp?: CSPConfig;
 	// 设置主题
 	theme?: ThemeConfig;
+	// 设置文本展示方向
+	direction?: DirectionType;
 
 	// 配置滚动监听容器
 	getTargetContainer?: () => HTMLElement;

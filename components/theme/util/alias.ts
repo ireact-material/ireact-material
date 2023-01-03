@@ -27,6 +27,14 @@ export default function formatToken(
 		...overrideTokens,
 	};
 
+	// 媒体查询断点
+	const screenXS = 480;
+	const screenSM = 576;
+	const screenMD = 768;
+	const screenLG = 992;
+	const screenXL = 1200;
+	const screenXXL = 1600;
+
 	// 别名变量 批量控制某些共性组件的样式
 	const aliasToken: AliasToken = {
 		// 合并样式变量
@@ -45,6 +53,43 @@ export default function formatToken(
 
 		// 文本的修饰线外观
 		textDecoration: "none",
+
+		// ---------媒体查询断点
+
+		// 480
+		screenXS,
+		// xs最小尺寸
+		screenXSMin: screenXS,
+		// xs最大尺寸
+		screenXSMax: screenSM - 1,
+		// 576
+		screenSM,
+		// sm最小尺寸
+		screenSMMin: screenSM,
+		// sm最大尺寸
+		screenSMMax: screenMD - 1,
+		// 768
+		screenMD,
+		// md最小尺寸
+		screenMDMin: screenMD,
+		// md最大尺寸
+		screenMDMax: screenLG - 1,
+		// 992
+		screenLG,
+		// lg最小尺寸
+		screenLGMin: screenLG,
+		// lg最大尺寸
+		screenLGMax: screenXL - 1,
+		// 1200
+		screenXL,
+		// xl最小尺寸
+		screenXLMin: screenXL,
+		// xl最大尺寸
+		screenXLMax: screenXXL - 1,
+		// 1600
+		screenXXL,
+		// xxl最小尺寸
+		screenXXLMin: screenXXL,
 
 		// 需要覆盖的样式变量
 		...overrideTokens,

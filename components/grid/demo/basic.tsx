@@ -1,28 +1,23 @@
 import React from "react";
-import { Row } from "ireact-material";
+import { Grid } from "ireact-material";
 
-const App: React.FC = () => (
-	<>
-		<Row>
-			121212
-			{/* <Col span={24}>col</Col> */}
-		</Row>
-		{/* <Row>
-      <Col span={12}>col-12</Col>
-      <Col span={12}>col-12</Col>
-    </Row>
-    <Row>
-      <Col span={8}>col-8</Col>
-      <Col span={8}>col-8</Col>
-      <Col span={8}>col-8</Col>
-    </Row>
-    <Row>
-      <Col span={6}>col-6</Col>
-      <Col span={6}>col-6</Col>
-      <Col span={6}>col-6</Col>
-      <Col span={6}>col-6</Col>
-    </Row> */}
-	</>
-);
+const { useBreakpoint } = Grid;
+
+const App: React.FC = () => {
+	const screens = useBreakpoint();
+
+	return (
+		<>
+			Current break point:{" "}
+			{Object.entries(screens)
+				.filter((screen) => !!screen[1])
+				.map((screen) => (
+					<div color="blue" key={screen[0]}>
+						{screen[0]}
+					</div>
+				))}
+		</>
+	);
+};
 
 export default App;

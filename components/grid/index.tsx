@@ -1,10 +1,12 @@
 import Row from "./row";
+import Col from "./col";
+import useInternalBreakpoint from "./hooks/useBreakpoint";
 
-// Do not export params
-// function useBreakpoint() {
-//   return useInternalBreakpoint();
-// }
+export { Row, Col };
 
-export { Row };
+// 使用 useBreakpoint Hook 个性化布局
+function useBreakpoint() {
+	return useInternalBreakpoint();
+}
 
-// export default { useBreakpoint };
+export default { useBreakpoint };

@@ -46,13 +46,18 @@ export const genLinkStyle = (token: AliasToken): CSSObject => ({
 
 // 设置公共样式
 export const genCommonStyle = (
+	// 别名变量
+	token: AliasToken,
 	// 组件class
 	componentPrefixCls: string,
 ): CSSObject => {
+	const { fontSize } = token;
+
 	const rootPrefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
 
 	return {
 		[rootPrefixSelector]: {
+			fontSize,
 			boxSizing: "border-box",
 
 			// before,after

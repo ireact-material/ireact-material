@@ -16,4 +16,23 @@ export interface AliasToken extends MapToken {
 
 	// 文本的修饰线外观
 	textDecoration: React.CSSProperties["textDecoration"];
+
+	// 媒体查询断点
+	screenXS: number;
+	screenXSMin: number;
+	screenXSMax: number;
+	screenSM: number;
+	screenSMMin: number;
+	screenSMMax: number;
+	screenMD: number;
+	screenMDMin: number;
+	screenMDMax: number;
+	screenLG: number;
+	screenLGMin: number;
+	screenLGMax: number;
+	screenXL: number;
+	screenXLMin: number;
+	screenXLMax: number;
+	screenXXL: number;
+	screenXXLMin: number;
 }

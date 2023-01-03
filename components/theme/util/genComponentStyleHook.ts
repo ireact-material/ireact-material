@@ -142,7 +142,7 @@ export default function genComponentStyleHook<
 
 					return [
 						// 设置公共样式
-						genCommonStyle(prefixCls),
+						genCommonStyle(token, prefixCls),
 						// 自定义样式
 						styleInterpolation,
 					];

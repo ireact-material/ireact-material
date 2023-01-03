@@ -45,4 +45,12 @@ export interface SeedToken extends PresetColorType {
 	 * @name 动画基础时长
 	 */
 	motionBase: number;
+
+	//  ----------字体----------
+
+	/**
+	 * @name 默认字号
+	 * @desc 设计系统中使用最广泛的字体大小，文本梯度也将基于该字号进行派生。
+	 */
+	fontSize: number;
 }
