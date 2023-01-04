@@ -115,6 +115,7 @@ export default function useResponsiveObserver() {
 	);
 
 	// 为了避免重复创建实例，在这里添加 `useMemo`
+	// useMemo 调用您的函数并缓存其结果
 	return React.useMemo(() => {
 		// 订阅者
 		const subscribers = new Map<Number, SubscribeFunc>();

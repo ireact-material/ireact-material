@@ -151,8 +151,9 @@ const ProviderChildren: React.FC<ProviderChildrenProps> = (props) => {
 		theme,
 	} = props;
 
-	// 获取统一样式前缀
+	// 获取统一样式前缀 回调函数仅在某个依赖项改变时才会更新
 	const getPrefixCls = React.useCallback(
+		// 要缓存的函数值
 		(suffixCls: string, customizePrefixCls?: string) => {
 			const { prefixCls } = props;
 
@@ -166,6 +167,7 @@ const ProviderChildren: React.FC<ProviderChildrenProps> = (props) => {
 			// 有设置后缀
 			return suffixCls ? `${mergedPrefixCls}-${suffixCls}` : mergedPrefixCls;
 		},
+		// 只要依赖项数组不改变函数不会重新渲染
 		[parentContext.getPrefixCls, props.prefixCls],
 	);
 
@@ -216,11 +218,17 @@ const ProviderChildren: React.FC<ProviderChildrenProps> = (props) => {
 	});
 
 	// 防止在 ConfigProvider 更改语言环境时刷新子组件
+	// 只有更新的方法返回true才会触发要缓存的函数
 	const memoedConfig = useMemo(
 		() => config,
+		// 依赖数组
 		config,
+		// 触发更新的方法
 		(prevConfig, currentConfig) => {
+			// 上一个 props配置
 			const prevKeys = Object.keys(prevConfig) as Array<keyof typeof config>;
+
+			// 当前 props配置
 			const currentKeys = Object.keys(currentConfig) as Array<
 				keyof typeof config
 			>;

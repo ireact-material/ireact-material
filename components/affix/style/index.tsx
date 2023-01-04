@@ -1,10 +1,10 @@
 import type { CSSObject } from "@ant-design/cssinjs";
-import type { FullToken, GenerateStyle } from "../../theme/internal";
+
 import { genComponentStyleHook, mergeToken } from "../../theme/internal";
 
-interface AffixToken extends FullToken<"Affix"> {
-	zIndexPopup: number;
-}
+// type
+import type { GenerateStyle } from "../../theme/internal";
+import type { AffixToken } from "./types";
 
 // 为 affix 添加样式
 const genSharedAffixStyle: GenerateStyle<AffixToken> = (token): CSSObject => {

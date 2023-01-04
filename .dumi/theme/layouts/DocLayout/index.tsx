@@ -52,6 +52,7 @@ const DocLayout: React.FC = () => {
 	const { pathname, search, hash } = location;
 
 	// 渲染的内容
+	// useMemo 调用您的函数并缓存其结果
 	const content = useMemo(() => {
 		if (
 			["", "/"].some((path) => path === pathname) ||

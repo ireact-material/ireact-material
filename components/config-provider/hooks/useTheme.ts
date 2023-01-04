@@ -24,6 +24,7 @@ export default function useTheme(
 		themeConfig.inherit === false || !parentTheme ? defaultConfig : parentTheme;
 
 	// 合并主题
+	// 只有更新的方法返回true才会触发要缓存的函数
 	const mergedTheme = useMemo<ThemeConfig | undefined>(
 		() => {
 			// 没有自定义主题
@@ -63,7 +64,7 @@ export default function useTheme(
 			};
 		},
 		[themeConfig, parentThemeConfig],
-		// 对比
+		// 对比符合时触发更新
 		(prev, next) =>
 			prev.some((prevTheme, index) => {
 				const nextTheme = next[index];

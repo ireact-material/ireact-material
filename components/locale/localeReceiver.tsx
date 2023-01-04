@@ -34,20 +34,26 @@ const LocaleReceiver = <C extends LocaleComponentName = LocaleComponentName>(
 
 	// 获取使用的语言代码
 	// 某个依赖项改变时才重新计算
-	const getLocale = React.useMemo<NonNullable<Locale[C]>>(() => {
-		// 如果没有设置默认语言 使用英文
-		const locale = defaultLocale || defaultLocaleData[componentName];
+	// useMemo 调用您的函数并缓存其结果
+	const getLocale = React.useMemo<NonNullable<Locale[C]>>(
+		() => {
+			// 如果没有设置默认语言 使用英文
+			const locale = defaultLocale || defaultLocaleData[componentName];
 
-		// 获取组件对应使用的语言内容
-		const localeFromContext = currentLocale?.[componentName] ?? {};
+			// 获取组件对应使用的语言内容
+			const localeFromContext = currentLocale?.[componentName] ?? {};
 
-		return {
-			...(locale instanceof Function ? locale() : locale),
-			...(localeFromContext || {}),
-		};
-	}, [componentName, defaultLocale, currentLocale]);
+			return {
+				...(locale instanceof Function ? locale() : locale),
+				...(localeFromContext || {}),
+			};
+		},
+		// 依赖计算值
+		[componentName, defaultLocale, currentLocale],
+	);
 
 	// 获取对应的语言环境
+	// useMemo 调用您的函数并缓存其结果
 	const getLocaleCode = React.useMemo<string>(() => {
 		const localeCode = currentLocale && currentLocale.locale;
 
