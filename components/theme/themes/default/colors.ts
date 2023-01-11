@@ -1,7 +1,7 @@
 import { generate } from "@ant-design/colors";
 
-// 颜色算法
-import { getAlphaColor } from "./colorAlgorithm";
+// 生成透明度颜色 | 生成边框颜色
+import { getAlphaColor, getSolidColor } from "./colorAlgorithm";
 
 // type
 import type { GenerateColorMap, GenerateNeutralColorMap } from "../ColorMap";
@@ -33,11 +33,19 @@ export const generateNeutralColorPalettes: GenerateNeutralColorMap = (
 	textBaseColor: string,
 ) => {
 	// 背景颜色
-	// const colorBgBase = bgBaseColor || '#fff';
+	const colorBgBase = bgBaseColor || "#fff";
+
 	// 文字颜色
 	const colorTextBase = textBaseColor || "#000";
 
 	return {
+		// 一级文本色
+		colorText: getAlphaColor(colorTextBase, 0.88),
+		// 四级文本色
 		colorTextQuaternary: getAlphaColor(colorTextBase, 0.25),
+		// 组件容器背景色
+		colorBgContainer: getSolidColor(colorBgBase, 0),
+		// 二级边框色
+		colorBorderSecondary: getSolidColor(colorBgBase, 6),
 	};
 };

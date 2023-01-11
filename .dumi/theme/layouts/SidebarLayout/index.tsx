@@ -8,7 +8,9 @@ const SidebarLayout: FC<PropsWithChildren<{}>> = ({ children }) => (
 	<main style={{ display: "flex", marginTop: 40 }}>
 		{/* 页面中动态配置 head 中的标签 */}
 		<CommonHelmet />
+		{/* 侧边栏 */}
 		{/* <Sidebar /> */}
+		{/* content */}
 		<Content>{children}</Content>
 	</main>
 );

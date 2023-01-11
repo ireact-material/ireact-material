@@ -2,8 +2,10 @@ import { useStyleRegister } from "@ant-design/cssinjs";
 import { resetIcon } from "../../style";
 import { useToken } from "../../theme/internal";
 
+// 生成icon样式
 const useStyle = (iconPrefixCls: string) => {
 	const [theme, token] = useToken();
+
 	// 为图标生成样式
 	return useStyleRegister(
 		{

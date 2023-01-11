@@ -8,11 +8,15 @@ import type { MapToken } from "./token-maps";
 export interface AliasToken extends MapToken {
 	// text颜色
 	colorTextDisabled: string;
+	colorTextHeading: string;
 
 	// a链接颜色
 	colorLink: string;
 	colorLinkHover: string;
 	colorLinkActive: string;
+
+	// 分割线颜色
+	colorSplit: string;
 
 	// 文本的修饰线外观
 	textDecoration: React.CSSProperties["textDecoration"];
@@ -35,4 +39,7 @@ export interface AliasToken extends MapToken {
 	screenXLMax: number;
 	screenXXL: number;
 	screenXXLMin: number;
+
+	// 阴影
+	boxShadow: string;
 }

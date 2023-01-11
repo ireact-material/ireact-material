@@ -19,7 +19,10 @@ export default defineConfig({
 		atomDirs: [{ type: "component", dir: "components" }],
 		codeBlockMode: "passive",
 	},
-	locales: [{ id: "zh-CN", name: "中文", suffix: "-cn" }],
+	locales: [
+		{ id: "en-US", name: "English", suffix: "" },
+		{ id: "zh-CN", name: "中文", suffix: "-cn" },
+	],
 	// 设置代码中的可用变量
 	define: {
 		// version: version,

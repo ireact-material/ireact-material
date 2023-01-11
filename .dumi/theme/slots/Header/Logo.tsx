@@ -1,32 +1,67 @@
 import * as React from "react";
 import { css } from "@emotion/react";
-import { Link } from "dumi";
+import { Link, useLocation } from "dumi";
 
-const useStyle = () => ({
-	logoWrapper: css`
-		display: flex;
-		align-items: center;
-    font-size: 26px;
+// hooks
+import useSiteToken from "../../../hooks/useSiteToken";
 
-		img {
-    	height: 40px;
-  	}
-	`,
-});
+import * as utils from "../../utils";
 
-const Logo = () => {
+const useStyle = () => {
+	const { token } = useSiteToken();
+
+	const { headerHeight, colorTextHeading } = token;
+
+	return {
+		logo: css`
+      display: inline-flex;
+      align-items: center;
+      height: ${headerHeight}px;
+      color: ${colorTextHeading};
+      padding-left: 20px;
+      font-size: 18px;
+      white-space: nowrap;
+      text-decoration: none;
+      overflow: hidden;
+
+      &:hover {
+        color: ${colorTextHeading};
+      }
+
+      img {
+        height: 32px;
+        margin-right: 12px;
+        vertical-align: middle;
+      }
+    `,
+	};
+};
+
+export interface LogoProps {
+	isZhCN: boolean;
+	location: any;
+}
+
+const Logo = ({ isZhCN }: LogoProps) => {
+	// 返回当前 location 对象
+	const { search } = useLocation();
+
+	// 样式
 	const style = useStyle();
 
 	return (
-		<div css={style.logoWrapper}>
-			<Link to="/">
+		<h1>
+			<Link
+				css={style.logo}
+				to={utils.getLocalizedPathname("/", isZhCN, search)}
+			>
 				<img
 					alt="logo"
 					src="https://cdn.lovevuerk.com/plus/img/logo.92144542.png"
 				/>
-				<span>IReact Material</span>
+				<span style={{ lineHeight: "32px" }}>IReact Material</span>
 			</Link>
-		</div>
+		</h1>
 	);
 };
 

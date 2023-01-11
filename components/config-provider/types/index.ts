@@ -46,3 +46,5 @@ export interface ProviderChildrenProps extends ConfigProviderProps {
 	// 语言包配置
 	legacyLocale: Locale;
 }
+
+export { type CSPConfig, type DirectionType, type ConfigConsumerProps };

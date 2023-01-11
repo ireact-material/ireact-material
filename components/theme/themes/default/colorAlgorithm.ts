@@ -12,5 +12,5 @@ export const getSolidColor = (baseColor: string, brightness: number) => {
 	// 使颜色变浅一定量
 	// 从 0 到 100
 	// 提供 100 将始终返回白色
-	return instance.lighten(brightness).toHexString();
+	return instance.darken(brightness).toHexString();
 };

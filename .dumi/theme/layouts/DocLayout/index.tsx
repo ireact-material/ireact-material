@@ -2,7 +2,6 @@ import React, { useMemo, useEffect, useRef, useLayoutEffect } from "react";
 import { Helmet, useOutlet, useSiteData } from "dumi";
 import "dayjs/locale/zh-cn";
 import dayjs from "dayjs";
-
 import classNames from "classnames";
 
 // 全局化配置
@@ -14,6 +13,7 @@ import useLocale from "../../../hooks/useLocale";
 import useLocation from "../../../hooks/useLocation";
 
 // slots
+import Header from "../../slots/Header";
 import Footer from "../../slots/Footer";
 import SidebarLayout from "../SidebarLayout";
 
@@ -135,7 +135,11 @@ const DocLayout: React.FC = () => {
 				/>
 			</Helmet>
 			<ConfigProvider locale={lang === "cn" ? zhCN : undefined}>
+				{/* 公共样式 */}
 				<GlobalStyles />
+				{/* header */}
+				<Header />
+				{/* 内容 */}
 				{content}
 			</ConfigProvider>
 		</>

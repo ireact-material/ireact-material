@@ -8,7 +8,7 @@ import type { Theme } from "./types/context";
 const dynamicStyleMark = `-ireact-${Date.now()}-${Math.random()}`;
 
 export function getStyle(globalPrefixCls: string, theme: Theme) {
-	console.log("theme", theme);
+	console.log("getStyle-theme", theme);
 	const variables: Record<string, string> = {};
 
 	// 转换为css变量

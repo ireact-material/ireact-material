@@ -53,4 +53,17 @@ export interface SeedToken extends PresetColorType {
 	 * @desc 设计系统中使用最广泛的字体大小，文本梯度也将基于该字号进行派生。
 	 */
 	fontSize: number;
+
+	/**
+	 * @name 字体
+	 */
+	fontFamily: string;
+
+	//  ----------圆角----------
+
+	/**
+	 * @name 基础圆角
+	 * @desc 基础组件的圆角大小，例如按钮、输入框、卡片等
+	 */
+	borderRadius: number;
 }

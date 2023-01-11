@@ -104,3 +104,17 @@ export const resetIcon = (): CSSObject => ({
 		display: "block",
 	},
 });
+
+// 清除 before after
+export const clearFix = (): CSSObject => ({
+	"&::before": {
+		display: "table",
+		content: '""',
+	},
+
+	"&::after": {
+		display: "table",
+		clear: "both",
+		content: '""',
+	},
+});

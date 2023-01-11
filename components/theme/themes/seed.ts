@@ -38,6 +38,12 @@ const seedToken: SeedToken = {
 
 	// 字体
 	fontSize: 14,
+
+	// 基础圆角
+	borderRadius: 6,
+
+	// font
+	fontFamily: `Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif`,
 };
 
 export default seedToken;

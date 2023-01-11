@@ -1,3 +1,4 @@
+// 获取本地化路径名
 // eslint-disable-next-line import/prefer-default-export
 export function getLocalizedPathname(
 	path: string,
@@ -10,20 +11,29 @@ export function getLocalizedPathname(
 ) {
 	const pathname = path.startsWith("/") ? path : `/${path}`;
 	let fullPath: string;
+
 	if (!zhCN) {
 		// to enUS
 		fullPath = /\/?index-cn/.test(pathname) ? "/" : pathname.replace("-cn", "");
-	} else if (pathname === "/") {
-		fullPath = "/index";
-	} else if (pathname.endsWith("/")) {
+	}
+	// index
+	else if (pathname === "/") {
+		fullPath = "/index-cn";
+	}
+	// cn
+	else if (pathname.endsWith("/")) {
 		fullPath = pathname.replace(/\/$/, "-cn/");
-	} else {
+	}
+	// cn
+	else {
 		fullPath = `${pathname}`;
 		fullPath = fullPath.replace(/(-cn)+/, "-cn");
 	}
 
+	// 是否有hash
 	if (hash) {
 		const localHash = hash[zhCN ? "zhCN" : "enUS"];
+
 		fullPath += `#${localHash}`;
 	}
 

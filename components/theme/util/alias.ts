@@ -1,3 +1,5 @@
+import getAlphaColor from "./getAlphaColor";
+
 import type { AliasToken } from "../types";
 import type { RawMergedToken } from "./types/alias";
 
@@ -42,12 +44,19 @@ export default function formatToken(
 
 		// ---------text颜色
 		colorTextDisabled: mergedToken.colorTextQuaternary,
+		colorTextHeading: mergedToken.colorText,
 
 		// ---------链接颜色
 		// a链接颜色
 		colorLink: mergedToken.colorInfoText,
 		colorLinkHover: mergedToken.colorInfoHover,
 		colorLinkActive: mergedToken.colorInfoActive,
+
+		// ---------分割线
+		colorSplit: getAlphaColor(
+			mergedToken.colorBorderSecondary,
+			mergedToken.colorBgContainer,
+		),
 
 		// ---------文本样式
 
@@ -90,6 +99,13 @@ export default function formatToken(
 		screenXXL,
 		// xxl最小尺寸
 		screenXXLMin: screenXXL,
+
+		// 阴影
+		boxShadow: `
+      0 1px 2px 0 rgba(0, 0, 0, 0.03),
+      0 1px 6px -1px rgba(0, 0, 0, 0.02),
+      0 2px 4px 0 rgba(0, 0, 0, 0.02)
+    `,
 
 		// 需要覆盖的样式变量
 		...overrideTokens,
