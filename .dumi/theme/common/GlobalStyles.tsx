@@ -3,6 +3,7 @@ import Reset from "./styles/Reset";
 import Common from "./styles/Common";
 import Markdown from "./styles/Markdown";
 import Demo from "./styles/Demo";
+import Highlight from "./styles/Highlight";
 
 const GlobalStyles = () => (
 	<>
@@ -10,6 +11,7 @@ const GlobalStyles = () => (
 		<Common />
 		<Markdown />
 		<Demo />
+		<Highlight />
 	</>
 );
 

@@ -11,7 +11,6 @@ const DemoWrapper: typeof DumiDemoGrid = ({ items }) => {
 		previewerProps: { ...item.previewerProps, expand: expandAll },
 	}));
 
-	console.log("items", items);
 	return (
 		<div className="demo-wrapper">
 			{/* find a new way instead of `key` to trigger re-render */}

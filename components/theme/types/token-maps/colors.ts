@@ -27,6 +27,14 @@ export interface ColorNeutralMapToken {
 	 * @desc 比默认使用的边框色要浅一级，此颜色和 colorSplit 的颜色一致。使用的是实色。
 	 */
 	colorBorderSecondary: string;
+
+	//  ----------填充----------
+
+	/**
+	 * @name 三级填充色
+	 * @desc 三级填充色用于勾勒出元素形体的场景，如 Slider、Segmented 等。如无强调需求的情况下，建议使用三级填色作为默认填色。
+	 */
+	colorFillTertiary: string;
 }
 
 // 梯度变量

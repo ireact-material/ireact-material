@@ -7,7 +7,29 @@ import { ConfigContext } from "../config-provider";
 import { svgBaseProps } from "./utils";
 
 // type
-import type { InternalIconProps, CustomIconComponentProps } from "./types/icon";
+import type { CustomIconComponentProps } from "./types/icon";
+
+// props
+export interface IconProps extends React.HTMLProps<HTMLDivElement> {
+	// 组件前缀
+	prefixCls?: string;
+	// className
+	className?: string;
+	// 子节点
+	children?: React.ReactNode;
+	// 控制如何渲染图标
+	component?:
+		| React.ComponentType<
+				CustomIconComponentProps | React.SVGProps<SVGSVGElement>
+		  >
+		| React.ForwardRefExoticComponent<CustomIconComponentProps>;
+}
+
+// 内部props方法
+export interface InternalIconProps extends IconProps {
+	// viewBox
+	viewBox?: string;
+}
 
 const Icon = React.forwardRef<HTMLSpanElement, InternalIconProps>(
 	(props, ref) => {

@@ -14,6 +14,8 @@ const useSiteToken = () => {
 
 			mobileMaxWidth: 767.99,
 			headerHeight: 64,
+			siteMarkdownCodeBg: token.colorFillTertiary,
+			codeFamily: `'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace`,
 		},
 	};
 };

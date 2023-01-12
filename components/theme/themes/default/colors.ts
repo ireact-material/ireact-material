@@ -47,5 +47,7 @@ export const generateNeutralColorPalettes: GenerateNeutralColorMap = (
 		colorBgContainer: getSolidColor(colorBgBase, 0),
 		// 二级边框色
 		colorBorderSecondary: getSolidColor(colorBgBase, 6),
+		// 三级填充色
+		colorFillTertiary: getAlphaColor(colorTextBase, 0.04),
 	};
 };

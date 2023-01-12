@@ -18,19 +18,18 @@ export default () => {
           border-radius: ${token.borderRadius}px;
           transition: all 0.2s;
 
-          // demo
+          /* demo */
           &,
           .code-box-demo {
             background-color: ${token.colorBgContainer};
           }
 
-          // 展开
+          /* 展开 */
           &.expand &-meta {
-            border-bottom: 1px dashed ${token.colorSplit};
             border-radius: 0;
           }
 
-          // demo
+          /* demo */
           &-demo {
             padding: 42px 24px;
             color: ${token.colorText};
@@ -84,12 +83,12 @@ export default () => {
             }
           }
 
-          // 描述
+          /* 描述 */
           &-description {
             padding: 18px 24px 12px;
           }
 
-          // 选择按钮
+          /* 选择按钮 */
           &-actions {
             display: flex;
             justify-content: center;
@@ -159,7 +158,7 @@ export default () => {
             }
           }
 
-          // 高亮
+          /* 高亮 */
           .highlight-wrapper {
             display: none;
             overflow: auto;
@@ -167,6 +166,44 @@ export default () => {
 
             &-expand {
               display: block;
+            }
+          }
+
+          /* 高亮 */
+          .highlight {
+            position: relative;
+
+            pre {
+              margin: 0;
+              padding: 0;
+              background: ${token.colorBgContainer};
+            }
+
+            &:last-child {
+              border-top: 1px dashed ${token.colorSplit};
+            }
+          }
+
+          pre {
+            width: auto;
+            margin: 0;
+
+            code {
+              background: ${token.colorBgContainer};
+              border: none;
+              box-shadow: unset;
+            }
+          }
+
+          .markdown {
+            pre {
+              margin: 0.5em 0;
+              padding: 6px 12px;
+            }
+
+            pre code {
+              margin: 0;
+              background: #f5f5f5;
             }
           }
         }

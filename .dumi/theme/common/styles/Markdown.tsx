@@ -62,6 +62,119 @@ export default () => {
         .markdown pre {
           margin: 1em 0;
         }
+
+        .markdown code {
+          margin: 0 1px;
+          padding: 0.2em 0.4em;
+          font-size: 0.9em;
+          background: ${token.siteMarkdownCodeBg};
+          border: 1px solid ${token.colorSplit};
+          border-radius: 3px;
+        }
+
+        .markdown .dumi-default-table {
+          table {
+            margin: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            direction: ltr;
+            empty-cells: show;
+            border: 1px solid ${token.colorSplit};
+            border-collapse: collapse;
+            border-spacing: 0;
+
+            th,
+            td {
+              padding: 12px 24px;
+              text-align: left;
+              border: 1px solid ${token.colorSplit};
+
+              /* &:first-child {
+                border-left: 1px solid ${token.colorSplit};
+              } */
+
+              &:last-child {
+                border-right: 1px solid ${token.colorSplit};
+              }
+
+              img {
+                max-width: unset;
+              }
+            }
+
+            th {
+              color: #5c6b77;
+              font-weight: 500;
+              white-space: nowrap;
+              background: rgba(0, 0, 0, 0.02);
+              border-width: 1px 1px 2px;
+            }
+
+            tbody tr {
+              transition: all 0.3s;
+
+              &:hover {
+                background: rgba(60, 90, 100, 0.04);
+              }
+            }
+          }
+
+          table.component-api-table {
+            margin: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            font-size: ${Math.max(token.fontSize - 1, 12)}px;
+            font-family: ${token.codeFamily};
+            line-height: ${token.lineHeight};
+            border: 1px solid ${token.colorSplit};
+            border-width: 0 1px;
+
+            th {
+              border-width: 1px 0 2px;
+            }
+
+            td {
+              border-width: 1px 0;
+
+              &:first-of-type {
+                width: 18%;
+                min-width: 58px;
+                color: #595959;
+                font-weight: 600;
+                white-space: nowrap;
+              }
+
+              &:nth-of-type(2) {
+                width: 55%;
+                min-width: 160px;
+              }
+
+              &:nth-of-type(3) {
+                width: 22%;
+                color: ${token["magenta-7"]};
+                font-size: ${Math.max(token.fontSize - 1, 12)}px;
+              }
+
+              &:nth-of-type(4) {
+                width: 15%;
+                font-size: ${Math.max(token.fontSize - 1, 12)}px;
+              }
+
+              &:nth-of-type(5) {
+                width: 8%;
+                font-size: ${Math.max(token.fontSize - 1, 12)}px;
+              }
+
+              &:nth-last-of-type(3):first-of-type {
+                width: 38%;
+              }
+
+              &:nth-last-of-type(3):first-of-type ~ td:nth-last-of-type(2) {
+                width: 70%;
+              }
+            }
+          }
+        }
       `}
 		/>
 	);

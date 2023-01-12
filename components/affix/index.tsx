@@ -18,11 +18,39 @@ import {
 
 // type
 import { AffixStatus } from "./types/affix";
-import type { AffixProps, InternalAffixProps, AffixState } from "./types/affix";
+import type { AffixState } from "./types/affix";
 import type { ConfigConsumerProps } from "../config-provider";
 
 function getDefaultTarget() {
 	return typeof window !== "undefined" ? window : null;
+}
+
+// props
+export interface AffixProps {
+	// 距离窗口顶部达到指定偏移量后触发
+	offsetTop?: number;
+	// 距离窗口底部达到指定偏移量后触发
+	offsetBottom?: number;
+	// 自定义样式
+	style?: React.CSSProperties;
+	// 固定状态改变时触发的回调函数
+	onChange?: (affixed?: boolean) => void;
+	// 设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数
+	target?: () => Window | HTMLElement | null;
+	// 外部定义的
+	prefixCls?: string;
+	// className
+	className?: string;
+	// 子节点
+	children: React.ReactNode;
+}
+
+// 内部props方法
+export interface InternalAffixProps extends AffixProps {
+	// 组件前缀
+	affixPrefixCls: string;
+	// 根类名
+	rootClassName: string;
 }
 
 class Affix extends React.Component<InternalAffixProps, AffixState> {

@@ -7,6 +7,8 @@ import { defaultPresetColors } from "../seed";
 import genColorMapToken from "../shared/genColorMapToken";
 // 公共变量
 import genCommonMapToken from "../shared/genCommonMapToken";
+// 设置字体
+import genFontMapToken from "../shared/genFontMapToken";
 
 // 生成调色版 | 生成公共颜色调色版
 import { generateColorPalettes, generateNeutralColorPalettes } from "./colors";
@@ -58,6 +60,9 @@ export default function derivative(token: SeedToken): MapToken {
 			generateColorPalettes,
 			generateNeutralColorPalettes,
 		}),
+
+		// Font
+		...genFontMapToken(token.fontSize),
 
 		// 公共变量
 		...genCommonMapToken(token),

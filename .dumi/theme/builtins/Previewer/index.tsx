@@ -105,9 +105,14 @@ class Demo extends React.Component<DemoProps, DemoState> {
 			content,
 			intl: { locale },
 			highlightedCodes,
+			highlightedStyle,
+			src,
 		} = this.props;
+
+		// 代码类型
 		const { codeType } = this.state;
 
+		// 站点context
 		const site: SiteContextProps = this.context;
 
 		// -------------------state---------------------------- //
@@ -132,14 +137,16 @@ class Demo extends React.Component<DemoProps, DemoState> {
 				(acc, line) => {
 					const matches = line.match(/import .+? from '(.+)';$/);
 
-					// if (matches && matches[1] && !line.includes('antd')) {
-					//   const paths = matches[1].split('/');
+					if (matches && matches[1] && !line.includes("ireact-material")) {
+						const paths = matches[1].split("/");
 
-					//   if (paths.length) {
-					//     const dep = paths[0].startsWith('@') ? `${paths[0]}/${paths[1]}` : paths[0];
-					//     acc[dep] = 'latest';
-					//   }
-					// }
+						if (paths.length) {
+							const dep = paths[0].startsWith("@")
+								? `${paths[0]}/${paths[1]}`
+								: paths[0];
+							acc[dep] = "latest";
+						}
+					}
 
 					return acc;
 				},
@@ -183,6 +190,7 @@ class Demo extends React.Component<DemoProps, DemoState> {
 			browserslist: [">0.2%", "not dead"],
 		};
 
+		// importReactContent
 		const importReactContent = code.importReactContent(
 			suffix,
 			sourceCodeTyped,
@@ -287,6 +295,14 @@ class Demo extends React.Component<DemoProps, DemoState> {
 							/>
 							<CodePenIcon className="code-box-codepen" />
 						</form>
+						<a
+							className="code-box-code-action"
+							target="_blank"
+							rel="noreferrer"
+							href={src}
+						>
+							预览
+						</a>
 						{/* 展开 */}
 						<div className="code-expand-icon code-box-code-action">
 							<img
@@ -323,6 +339,16 @@ class Demo extends React.Component<DemoProps, DemoState> {
 						toReactComponent={this.props.utils?.toReactComponent}
 						onCodeTypeChange={(type) => this.setState({ codeType: type })}
 					/>
+					{highlightedStyle ? (
+						<div key="style" className="highlight">
+							<pre>
+								<code
+									className="css"
+									dangerouslySetInnerHTML={{ __html: highlightedStyle }}
+								/>
+							</pre>
+						</div>
+					) : null}
 				</section>
 			</section>
 		);

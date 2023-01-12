@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 import { Affix } from "ireact-material";
 
 const style: CSSProperties = {
-	width: "100px",
+	width: "150px",
 	height: "30px",
 	textAlign: "center",
 	lineHeight: "30px",
@@ -15,8 +15,8 @@ const style: CSSProperties = {
 };
 
 const App: React.FC = () => (
-	<Affix>
-		<div style={style}>固定在最顶部</div>
+	<Affix offsetTop={150}>
+		<div style={style}>固定距离顶部150</div>
 	</Affix>
 );
 
