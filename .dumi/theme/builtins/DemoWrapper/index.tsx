@@ -14,7 +14,7 @@ const DemoWrapper: typeof DumiDemoGrid = ({ items }) => {
 	console.log("items", items);
 	return (
 		<div className="demo-wrapper">
-			{/* FIXME: find a new way instead of `key` to trigger re-render */}
+			{/* find a new way instead of `key` to trigger re-render */}
 			<DumiDemoGrid items={filteredItems} key={`${expandAll}`} />
 		</div>
 	);

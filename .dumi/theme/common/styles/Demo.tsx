@@ -105,6 +105,70 @@ export default () => {
             border: 0;
             cursor: pointer;
           }
+
+          /* codepen */
+          &-codepen {
+            width: 14px;
+            height: 14px;
+            overflow: hidden;
+            border: 0;
+            cursor: pointer;
+          }
+
+          // 展开
+          .code-expand-icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+          }
+
+          .code-expand-icon-show,
+          .code-expand-icon-hide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            box-shadow: none;
+            transition: all 0.4s;
+            user-select: none;
+          }
+
+          .code-expand-icon-show {
+            pointer-events: auto;
+          }
+
+          .code-expand-icon-hide {
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          &-actions &-code-action {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            transition: all 0.24s;
+
+            &:hover {
+              color: ${token.colorText};
+            }
+          }
+
+          // 高亮
+          .highlight-wrapper {
+            display: none;
+            overflow: auto;
+            border-radius: 0 0 ${token.borderRadius}px ${token.borderRadius}px;
+
+            &-expand {
+              display: block;
+            }
+          }
         }
       `}
 		/>

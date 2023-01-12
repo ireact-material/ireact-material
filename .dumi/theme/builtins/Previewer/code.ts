@@ -47,3 +47,50 @@ export const importReactContent = (
 
 	return [_importReactContent, parsedSourceCode];
 };
+
+export const codepenPrefillConfig = (localizedTitle, sourceCode) => ({
+	title: `${localizedTitle} `,
+	html,
+	js: `${"const { createRoot } = ReactDOM;\n"}${sourceCode
+		.replace(
+			/import\s+(?:React,\s+)?{(\s+[^}]*\s+)}\s+from\s+'react'/,
+			`const { $1 } = React;`,
+		)
+		.replace(
+			/import\s+{(\s+[^}]*\s+)}\s+from\s+'antd';/,
+			"const { $1 } = antd;",
+		)
+		.replace(
+			/import\s+{(\s+[^}]*\s+)}\s+from\s+'@ant-design\/icons';/,
+			"const { $1 } = icons;",
+		)
+		.replace("import moment from 'moment';", "")
+		.replace("import React from 'react';", "")
+		.replace(
+			/import\s+{\s+(.*)\s+}\s+from\s+'react-router';/,
+			"const { $1 } = ReactRouter;",
+		)
+		.replace(
+			/import\s+{\s+(.*)\s+}\s+from\s+'react-router-dom';/,
+			"const { $1 } = ReactRouterDOM;",
+		)
+		.replace(/([A-Za-z]*)\s+as\s+([A-Za-z]*)/, "$1:$2")
+		.replace(
+			/export default/,
+			"const ComponentDemo =",
+		)}\n\ncreateRoot(mountNode).render(<ComponentDemo />);\n`,
+	editors: "001",
+	css: "",
+	js_external: [
+		"react@18/umd/react.development.js",
+		"react-dom@18/umd/react-dom.development.js",
+		"dayjs@1/dayjs.min.js",
+		// `ireact-material@${version}/dist/ireact-material-with-locales.js`,
+		// `@ant-design/icons/dist/index.umd.js`,
+		"react-router-dom/dist/umd/react-router-dom.production.min.js",
+		"react-router/dist/umd/react-router.production.min.js",
+	]
+		.map((url) => `https://unpkg.com/${url}`)
+		.join(";"),
+	js_pre_processor: "typescript",
+});

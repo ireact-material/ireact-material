@@ -57,7 +57,7 @@ const Logo = ({ isZhCN }: LogoProps) => {
 			>
 				<img
 					alt="logo"
-					src="https://cdn.lovevuerk.com/plus/img/logo.92144542.png"
+					src="https://avatars.githubusercontent.com/u/121840434?s=200&v=4"
 				/>
 				<span style={{ lineHeight: "32px" }}>IReact Material</span>
 			</Link>

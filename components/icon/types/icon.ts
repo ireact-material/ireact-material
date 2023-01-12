@@ -7,7 +7,7 @@ export interface IconProps extends React.HTMLProps<HTMLDivElement> {
 	// className
 	className?: string;
 	// 子节点
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	// 控制如何渲染图标
 	component?:
 		| React.ComponentType<

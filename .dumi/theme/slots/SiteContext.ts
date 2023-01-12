@@ -4,9 +4,9 @@ import * as React from "react";
 import type { ThemeName } from "../common/ThemeSwitch";
 
 export interface SiteContextProps {
-	isMobile: boolean;
-	theme: ThemeName[];
-	updateSiteConfig: (props: Partial<SiteContextProps>) => void;
+	isMobile?: boolean;
+	theme?: ThemeName[];
+	updateSiteConfig?: (props: Partial<SiteContextProps>) => void;
 }
 
 const SiteContext = React.createContext<SiteContextProps>({

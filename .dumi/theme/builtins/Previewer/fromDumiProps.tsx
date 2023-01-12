@@ -72,7 +72,7 @@ export default function fromDumiProps<P extends object>(
 			},
 			// 语法高亮
 			highlightedCodes: {
-				//   jsx: Prism.highlight(meta.jsx, Prism.languages.javascript, 'jsx'),
+				// jsx: Prism.highlight(meta.jsx, Prism.languages.javascript, 'jsx'),
 				tsx: Prism.highlight(entryCode, Prism.languages.typescript, "tsx"),
 			},
 			style: meta.style,

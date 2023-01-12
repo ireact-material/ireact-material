@@ -10,8 +10,11 @@ import * as code from "./code";
 
 // common
 import CodeSandboxIcon from "../../common/CodeSandboxIcon";
+import CodePenIcon from "../../common/CodePenIcon";
+import CodePreview from "../../common/CodePreview";
 
 // type
+import type { SiteContextProps } from "../../slots/SiteContext";
 
 // props
 interface DemoProps {
@@ -59,11 +62,12 @@ class Demo extends React.Component<DemoProps, DemoState> {
 	// codesandbox
 	codeSandboxIconRef = React.createRef<HTMLFormElement>();
 
+	// codepen
+	codepenIconRef = React.createRef<HTMLFormElement>();
+
 	// state
 	state: DemoState = {
 		codeExpand: false,
-		// copied: false,
-		// copyTooltipOpen: false,
 		codeType: "tsx",
 	};
 
@@ -85,14 +89,11 @@ class Demo extends React.Component<DemoProps, DemoState> {
 		return [sourceCodes.jsx, sourceCodes.tsx];
 	};
 
-	track = ({ type, demo }: { type: string; demo: string }) => {
-		if (!window.gtag) {
-			return;
-		}
-		window.gtag("event", "demo", {
-			event_category: type,
-			event_label: demo,
-		});
+	// 展开
+	handleCodeExpand = () => {
+		const { codeExpand } = this.state;
+
+		this.setState({ codeExpand: !codeExpand });
 	};
 
 	render() {
@@ -103,8 +104,11 @@ class Demo extends React.Component<DemoProps, DemoState> {
 			preview,
 			content,
 			intl: { locale },
+			highlightedCodes,
 		} = this.props;
-		const { copied, copyTooltipOpen, codeType } = this.state;
+		const { codeType } = this.state;
+
+		const site: SiteContextProps = this.context;
 
 		// -------------------state---------------------------- //
 
@@ -220,6 +224,11 @@ class Demo extends React.Component<DemoProps, DemoState> {
 			expand: codeExpand,
 		});
 
+		// 高亮样式
+		const highlightClass = classNames("highlight-wrapper", {
+			"highlight-wrapper-expand": codeExpand,
+		});
+
 		const codeBox = (
 			<section className={codeBoxClass} id={meta.id}>
 				<section className="code-box-demo" data-compact={meta.compact}>
@@ -248,7 +257,6 @@ class Demo extends React.Component<DemoProps, DemoState> {
 							target="_blank"
 							ref={this.codeSandboxIconRef}
 							onClick={() => {
-								this.track({ type: "codesandbox", demo: meta.id });
 								this.codeSandboxIconRef.current.submit();
 							}}
 						>
@@ -259,7 +267,62 @@ class Demo extends React.Component<DemoProps, DemoState> {
 							/>
 							<CodeSandboxIcon className="code-box-codesandbox" />
 						</form>
+						{/* codepen */}
+						<form
+							className="code-box-code-action"
+							action="https://codepen.io/pen/define"
+							method="POST"
+							target="_blank"
+							ref={this.codepenIconRef}
+							onClick={() => {
+								this.codepenIconRef.current?.submit();
+							}}
+						>
+							<input
+								type="hidden"
+								name="data"
+								value={JSON.stringify(
+									code.codepenPrefillConfig(localizedTitle, sourceCode),
+								)}
+							/>
+							<CodePenIcon className="code-box-codepen" />
+						</form>
+						{/* 展开 */}
+						<div className="code-expand-icon code-box-code-action">
+							<img
+								alt="expand code"
+								src={
+									site.theme.includes("dark")
+										? "https://gw.alipayobjects.com/zos/antfincdn/btT3qDZn1U/wSAkBuJFbdxsosKKpqyq.svg"
+										: "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg"
+								}
+								className={
+									codeExpand ? "code-expand-icon-hide" : "code-expand-icon-show"
+								}
+								onClick={() => this.handleCodeExpand()}
+							/>
+							<img
+								alt="expand code"
+								src={
+									site.theme.includes("dark")
+										? "https://gw.alipayobjects.com/zos/antfincdn/CjZPwcKUG3/OpROPHYqWmrMDBFMZtKF.svg"
+										: "https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg"
+								}
+								className={
+									codeExpand ? "code-expand-icon-show" : "code-expand-icon-hide"
+								}
+								onClick={() => this.handleCodeExpand()}
+							/>
+						</div>
 					</div>
+				</section>
+				{/* 代码 */}
+				<section className={highlightClass} key="code">
+					<CodePreview
+						codes={highlightedCodes}
+						toReactComponent={this.props.utils?.toReactComponent}
+						onCodeTypeChange={(type) => this.setState({ codeType: type })}
+					/>
 				</section>
 			</section>
 		);

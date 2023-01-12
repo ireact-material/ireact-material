@@ -2,7 +2,6 @@ import React, { useMemo, useEffect, useRef, useLayoutEffect } from "react";
 import { Helmet, useOutlet, useSiteData } from "dumi";
 import "dayjs/locale/zh-cn";
 import dayjs from "dayjs";
-import classNames from "classnames";
 
 // 全局化配置
 import ConfigProvider from "ireact-material/es/config-provider";
@@ -120,14 +119,14 @@ const DocLayout: React.FC = () => {
 				<title>IReact Material</title>
 				<link
 					rel="icon"
-					href="https://cdn.lovevuerk.com/plus/img/logo.92144542.png"
+					href="https://avatars.githubusercontent.com/u/121840434?s=200&v=4"
 				/>
 				<meta name="description" content={locale.description} />
 				<meta property="og:title" content={locale?.title} />
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
-					content="https://cdn.lovevuerk.com/plus/img/logo.92144542.png"
+					content="https://avatars.githubusercontent.com/u/121840434?s=200&v=4"
 				/>
 			</Helmet>
 			<ConfigProvider locale={lang === "cn" ? zhCN : undefined}>
