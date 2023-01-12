@@ -40,12 +40,10 @@ const GlobalLayout: React.FC = () => {
 	// 读取和修改当前 URL 的 query string
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const [{ theme, direction, isMobile }, setSiteState] =
-		React.useState<SiteState>({
-			isMobile: false,
-			direction: "ltr",
-			theme: ["light"],
-		});
+	const [{ theme, isMobile }, setSiteState] = React.useState<SiteState>({
+		isMobile: false,
+		theme: ["light"],
+	});
 
 	// 更新
 	const updateSiteConfig = useCallback(
@@ -79,12 +77,11 @@ const GlobalLayout: React.FC = () => {
 	// context
 	const siteContextValue = useMemo(
 		() => ({
-			direction,
 			updateSiteConfig,
 			theme: theme!,
 			isMobile: isMobile!,
 		}),
-		[isMobile, direction, updateSiteConfig, theme],
+		[isMobile, updateSiteConfig, theme],
 	);
 
 	useEffect(() => {
@@ -95,7 +92,6 @@ const GlobalLayout: React.FC = () => {
 			setSiteState({
 				theme: _theme,
 				isMobile: false,
-				direction: "ltr",
 			});
 		});
 	}, []);

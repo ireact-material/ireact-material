@@ -92,7 +92,7 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
 	const {
 		getPrefixCls,
 		// 设置文本展示方向
-		direction,
+		// direction,
 	} = React.useContext(ConfigContext);
 
 	// 使用的尺寸
@@ -170,7 +170,7 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
 			// 垂直对齐方式
 			[`${prefixCls}-${mergeAlign}`]: mergeAlign,
 			// 方向
-			[`${prefixCls}-rtl`]: direction === "rtl",
+			// [`${prefixCls}-rtl`]: direction === "rtl",
 		},
 		hashId,
 	);

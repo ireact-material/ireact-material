@@ -23,6 +23,7 @@ function rehypeAntd(): UnifiedTransformer<HastRoot> {
 
 				// clear children
 				node.children = [];
+				console.log("rehypeAntdrehypeAntdrehypeAntd", contentNode);
 
 				// generate JSX props
 				(node as any).JSXAttributes = [

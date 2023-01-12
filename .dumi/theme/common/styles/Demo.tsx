@@ -84,10 +84,26 @@ export default () => {
             }
           }
 
-
           // 描述
           &-description {
             padding: 18px 24px 12px;
+          }
+
+          // 选择按钮
+          &-actions {
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            border-top: 1px dashed ${token.colorSplit};
+          }
+
+          /* codesandbox */
+          &-codesandbox {
+            width: 16px;
+            height: 16px;
+            overflow: hidden;
+            border: 0;
+            cursor: pointer;
           }
         }
       `}

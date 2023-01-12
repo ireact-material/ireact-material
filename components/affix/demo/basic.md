@@ -4,4 +4,4 @@
 
 ## en-US
 
-The simplest usage.
+The most basic usage.

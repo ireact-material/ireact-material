@@ -116,11 +116,7 @@ const DocLayout: React.FC = () => {
 		<>
 			{/* 页面中动态配置 head 中的标签 */}
 			<Helmet encodeSpecialCharacters={false}>
-				<html
-					lang={lang}
-					data-direction="ltr"
-					className={classNames({ [`rtl`]: true })}
-				/>
+				<html lang={lang} data-direction="ltr" />
 				<title>IReact Material</title>
 				<link
 					rel="icon"

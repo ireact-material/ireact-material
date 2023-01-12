@@ -44,7 +44,7 @@ const Header: React.FC = () => {
 	const [isClient, setIsClient] = React.useState(false);
 
 	// 站点上下文
-	const { direction, isMobile, updateSiteConfig } =
+	const { isMobile, updateSiteConfig } =
 		useContext<SiteContextProps>(SiteContext);
 
 	const location = useLocation();
@@ -67,7 +67,6 @@ const Header: React.FC = () => {
 	});
 
 	const isZhCN = lang === "cn";
-	const isRTL = direction === "rtl";
 
 	// 样式
 	const style = useStyle();
@@ -75,7 +74,6 @@ const Header: React.FC = () => {
 	// 公共props
 	const sharedProps = {
 		isZhCN,
-		isRTL,
 		isClient,
 	};
 

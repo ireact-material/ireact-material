@@ -1,8 +1,8 @@
 import React from "react";
 import JsonML from "jsonml.js/lib/utils";
 import toReactComponent from "jsonml-to-react-element";
-// import Prism from 'prismjs';
-// import 'prismjs/components/prism-typescript';
+import Prism from "prismjs";
+import "prismjs/components/prism-typescript";
 
 import { useLocation, useIntl, type IPreviewerProps } from "dumi";
 
@@ -16,7 +16,6 @@ export default function fromDumiProps<P extends object>(
 		const location = useLocation();
 		const intl = useIntl();
 
-		console.log("props", props);
 		const {
 			asset,
 			children,
@@ -72,10 +71,10 @@ export default function fromDumiProps<P extends object>(
 				tsx: entryCode,
 			},
 			// 语法高亮
-			// highlightedCodes: {
-			//   jsx: Prism.highlight(meta.jsx, Prism.languages.javascript, 'jsx'),
-			//   tsx: Prism.highlight(entryCode, Prism.languages.typescript, 'tsx'),
-			// },
+			highlightedCodes: {
+				//   jsx: Prism.highlight(meta.jsx, Prism.languages.javascript, 'jsx'),
+				tsx: Prism.highlight(entryCode, Prism.languages.typescript, "tsx"),
+			},
 			style: meta.style,
 			location,
 			src: demoUrl,

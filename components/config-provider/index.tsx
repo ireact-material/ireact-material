@@ -139,7 +139,7 @@ const ProviderChildren: React.FC<ProviderChildrenProps> = (props) => {
 		// 语言包配置
 		legacyLocale,
 		// 设置文本展示方向
-		direction,
+		// direction,
 		// 设置 Space组件 的 size
 		space,
 		// 设置 false 时关闭虚拟滚动
@@ -187,7 +187,7 @@ const ProviderChildren: React.FC<ProviderChildrenProps> = (props) => {
 		csp,
 		autoInsertSpaceInButton,
 		locale: locale || legacyLocale,
-		direction,
+		// direction,
 		space,
 		virtual,
 		dropdownMatchSelectWidth,

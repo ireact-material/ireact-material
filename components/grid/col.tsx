@@ -34,7 +34,7 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>((props, ref) => {
 		// 获取前缀
 		getPrefixCls,
 		// 设置文本展示方向
-		direction,
+		// direction,
 	} = React.useContext(ConfigContext);
 
 	const {
@@ -106,7 +106,7 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>((props, ref) => {
 			[`${prefixCls}-${size}-pull-${sizeProps.pull}`]:
 				sizeProps.pull || sizeProps.pull === 0,
 			// 方向
-			[`${prefixCls}-rtl`]: direction === "rtl",
+			// [`${prefixCls}-rtl`]: direction === "rtl",
 		};
 	});
 

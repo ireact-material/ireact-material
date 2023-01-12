@@ -2,7 +2,7 @@ import type {
 	ConfigConsumerProps,
 	ThemeConfig,
 	CSPConfig,
-	DirectionType,
+	// DirectionType,
 } from "./context";
 import type { Locale } from "../../locale";
 import type { SizeType } from "./sizeContext";
@@ -27,7 +27,7 @@ export interface ConfigProviderProps {
 	// 语言包配置
 	locale?: Locale;
 	// 设置文本展示方向
-	direction?: DirectionType;
+	// direction?: DirectionType;
 	// 设置 Space组件 的 size
 	space?: {
 		size?: SizeType | number;
@@ -47,4 +47,4 @@ export interface ProviderChildrenProps extends ConfigProviderProps {
 	legacyLocale: Locale;
 }
 
-export { type CSPConfig, type DirectionType, type ConfigConsumerProps };
+export { type CSPConfig, type ConfigConsumerProps };

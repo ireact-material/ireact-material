@@ -1,6 +1,6 @@
 import { defineConfig } from "dumi";
 import path from "path";
-// import { version } from './package.json';
+import { version } from "./package.json";
 import rehypeAntd from "./.dumi/rehypeAntd";
 
 export default defineConfig({
@@ -9,10 +9,11 @@ export default defineConfig({
 		// to avoid generate routes for .dumi/pages/index/components/xx
 		exclude: [new RegExp("index/components/")],
 	},
+	// ssr: process.env.NODE_ENV === 'production' ? {} : false,
 	// 开启 hash 模式，让 build 之后的产物包含 hash 后缀。通常用于增量发布和避免浏览器加载缓存
 	hash: true,
 	// 配置输出路径
-	outputPath: "docs-dist",
+	outputPath: "_site",
 	// 用于配置 Markdown 解析相关的行为
 	resolve: {
 		docDirs: [{ type: "doc", dir: "docs" }],
@@ -25,7 +26,7 @@ export default defineConfig({
 	],
 	// 设置代码中的可用变量
 	define: {
-		// version: version,
+		ireactMaterialReproduceVersion: version,
 	},
 	// 配置别名，对 import 语句的 source 做映射
 	alias: {
@@ -35,12 +36,13 @@ export default defineConfig({
 		"ireact-material": require.resolve("./.dumi/theme/ireact-material.js"),
 		ireactmaterial: require.resolve("./.dumi/theme/ireact-material.js"),
 	},
-	// 配置额外的 babel 插件集。可传入插件集地址或插件集函数
-	extraBabelPresets: ["@emotion/babel-preset-css-prop"],
 	// 文档编译时修改 hast 树的插件
 	extraRehypePlugins: [rehypeAntd],
+	// 配置额外的 babel 插件集。可传入插件集地址或插件集函数
+	extraBabelPresets: ["@emotion/babel-preset-css-prop"],
 	// 配置基于 Module Federation 的提速功能
 	mfsu: false,
+	metas: [{ name: "theme-color", content: "#5B8EFF" }],
 	// headScripts
 	headScripts: [
 		`

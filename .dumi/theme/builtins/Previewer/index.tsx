@@ -1,9 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import classNames from "classnames";
+import LZString from "lz-string";
 
 import fromDumiProps from "./fromDumiProps";
 import SiteContext from "../../slots/SiteContext";
+import { version } from "../../../../package.json";
+import * as code from "./code";
+
+// common
+import CodeSandboxIcon from "../../common/CodeSandboxIcon";
 
 // type
 
@@ -32,7 +38,15 @@ interface DemoState {
 	copyTooltipOpen?: boolean | string;
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
+// 压缩
+function compress(string: string): string {
+	// JavaScript 压缩算法
+	return LZString.compressToBase64(string)
+		.replace(/\+/g, "-") // Convert '+' to '-'
+		.replace(/\//g, "_") // Convert '/' to '_'
+		.replace(/=+$/, ""); // Remove ending '='
+}
+
 class Demo extends React.Component<DemoProps, DemoState> {
 	static contextType = SiteContext;
 
@@ -42,12 +56,15 @@ class Demo extends React.Component<DemoProps, DemoState> {
 	// 锚点
 	anchorRef = React.createRef<HTMLAnchorElement>();
 
+	// codesandbox
+	codeSandboxIconRef = React.createRef<HTMLFormElement>();
+
 	// state
 	state: DemoState = {
 		codeExpand: false,
 		// copied: false,
 		// copyTooltipOpen: false,
-		// codeType: 'tsx',
+		codeType: "tsx",
 	};
 
 	// componentDidMount
@@ -60,6 +77,24 @@ class Demo extends React.Component<DemoProps, DemoState> {
 		}
 	}
 
+	// 获取源代码
+	getSourceCode = (): [string, string] => {
+		const { sourceCodes } = this.props;
+
+		// jsx | tsx 文件
+		return [sourceCodes.jsx, sourceCodes.tsx];
+	};
+
+	track = ({ type, demo }: { type: string; demo: string }) => {
+		if (!window.gtag) {
+			return;
+		}
+		window.gtag("event", "demo", {
+			event_category: type,
+			event_label: demo,
+		});
+	};
+
 	render() {
 		const {
 			meta,
@@ -69,15 +104,108 @@ class Demo extends React.Component<DemoProps, DemoState> {
 			content,
 			intl: { locale },
 		} = this.props;
+		const { copied, copyTooltipOpen, codeType } = this.state;
+
+		// -------------------state---------------------------- //
 
 		// 代码是否展开
 		const codeExpand = this.state.codeExpand || expand;
-
+		// 描述
+		const localizeIntro = content[locale] || content;
 		// 获取demo标题
 		const localizedTitle = meta?.title[locale] || meta?.title;
 
+		// 获取源代码
+		const [sourceCode, sourceCodeTyped] = this.getSourceCode();
+		const suffix = codeType === "tsx" ? "tsx" : "js";
+
+		// -------------------codesandbox配置---------------------------- //
+
+		// 依赖
+		const dependencies: Record<PropertyKey, string> = sourceCode
+			.split("\n")
+			.reduce(
+				(acc, line) => {
+					const matches = line.match(/import .+? from '(.+)';$/);
+
+					// if (matches && matches[1] && !line.includes('antd')) {
+					//   const paths = matches[1].split('/');
+
+					//   if (paths.length) {
+					//     const dep = paths[0].startsWith('@') ? `${paths[0]}/${paths[1]}` : paths[0];
+					//     acc[dep] = 'latest';
+					//   }
+					// }
+
+					return acc;
+				},
+				{ "ireact-material": version },
+			);
+
+		// dependencies['@ant-design/icons'] = 'latest';
+
+		// tsx文件引入类型
+		if (suffix === "tsx") {
+			dependencies["@types/react"] = "^18.0.0";
+			dependencies["@types/react-dom"] = "^18.0.0";
+		}
+
+		// 索引CSS内容
+		const indexCssContent = (style || "")
+			.trim()
+			.replace(new RegExp(`#${meta.id}\\s*`, "g"), "")
+			.replace("</style>", "")
+			.replace("<style>", "");
+
+		// 关联的包
+		const codesandboxPackage = {
+			title: `${localizedTitle}`,
+			main: "index.js",
+			dependencies: {
+				...dependencies,
+				react: "^18.0.0",
+				"react-dom": "^18.0.0",
+				"react-scripts": "^4.0.0",
+			},
+			devDependencies: {
+				typescript: "^4.0.5",
+			},
+			scripts: {
+				start: "react-scripts start",
+				build: "react-scripts build",
+				test: "react-scripts test --env=jsdom",
+				eject: "react-scripts eject",
+			},
+			browserslist: [">0.2%", "not dead"],
+		};
+
+		const importReactContent = code.importReactContent(
+			suffix,
+			sourceCodeTyped,
+			sourceCode,
+		);
+
+		// codesandbox配置
+		const codesanboxPrefillConfig = {
+			files: {
+				"package.json": { content: codesandboxPackage },
+				"index.css": { content: indexCssContent },
+				[`index.${suffix}`]: { content: code.indexJsContent },
+				[`demo.${suffix}`]: {
+					content: code.demoJsContent(
+						importReactContent[0],
+						importReactContent[1],
+					),
+				},
+				"index.html": {
+					content: code.html,
+				},
+			},
+		};
+
+		// -------------------render---------------------------- //
+
 		// 描述
-		const localizeIntro = content[locale] || content;
 		const introChildren = (
 			<div dangerouslySetInnerHTML={{ __html: localizeIntro }} />
 		);
@@ -110,6 +238,28 @@ class Demo extends React.Component<DemoProps, DemoState> {
 					</div>
 					{/* 描述 */}
 					<div className="code-box-description">{introChildren}</div>
+					{/* 选择按钮 */}
+					<div className="code-box-actions">
+						{/* codesandbox */}
+						<form
+							className="code-box-code-action"
+							action="https://codesandbox.io/api/v1/sandboxes/define"
+							method="POST"
+							target="_blank"
+							ref={this.codeSandboxIconRef}
+							onClick={() => {
+								this.track({ type: "codesandbox", demo: meta.id });
+								this.codeSandboxIconRef.current.submit();
+							}}
+						>
+							<input
+								type="hidden"
+								name="parameters"
+								value={compress(JSON.stringify(codesanboxPrefillConfig))}
+							/>
+							<CodeSandboxIcon className="code-box-codesandbox" />
+						</form>
+					</div>
 				</section>
 			</section>
 		);

@@ -18,7 +18,7 @@ export interface ConfigConsumerProps {
 	// 设置主题
 	theme?: ThemeConfig;
 	// 设置文本展示方向
-	direction?: DirectionType;
+	// direction?: DirectionType;
 
 	// 配置滚动监听容器
 	getTargetContainer?: () => HTMLElement;
@@ -79,4 +79,4 @@ export interface CSPConfig {
 }
 
 // 设置文本展示方向
-export type DirectionType = "ltr" | "rtl" | undefined;
+// export type DirectionType = "ltr" | "rtl" | undefined;
