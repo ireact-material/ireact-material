@@ -91,6 +91,7 @@ export default () => {
           /* 选择按钮 */
           &-actions {
             display: flex;
+            align-items: center;
             justify-content: center;
             padding: 12px 0;
             border-top: 1px dashed ${token.colorSplit};
@@ -148,14 +149,18 @@ export default () => {
             position: relative;
             display: flex;
             align-items: center;
-            width: 16px;
-            height: 16px;
+            /* width: 16px;
+            height: 16px; */
             cursor: pointer;
             transition: all 0.24s;
 
             &:hover {
               color: ${token.colorText};
             }
+          }
+
+          &-code-action {
+            margin: 0 10px;
           }
 
           /* 高亮 */
