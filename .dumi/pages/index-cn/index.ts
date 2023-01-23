@@ -1,3 +1,3 @@
-import Homepage from "../index/index";
+import Homepage from '../index/index';
 
 export default Homepage;

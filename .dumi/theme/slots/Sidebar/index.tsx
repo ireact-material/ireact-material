@@ -1,8 +1,8 @@
-import React from "react";
-import { css } from "@emotion/react";
+import React from 'react';
+import { css } from '@emotion/react';
 
 const useStyle = () => ({
-	mainMenu: css`
+  mainMenu: css`
     z-index: 1;
     .main-menu-inner {
       height: 100%;
@@ -22,13 +22,13 @@ const useStyle = () => ({
 });
 
 const Sidebar: React.FC = () => {
-	const styles = useStyle();
+  const styles = useStyle();
 
-	return (
-		<div css={styles.mainMenu}>
-			<section style={{ width: "100%" }} className="main-menu-inner" />
-		</div>
-	);
+  return (
+    <div css={styles.mainMenu}>
+      <section style={{ width: '100%' }} className="main-menu-inner" />
+    </div>
+  );
 };
 
 export default Sidebar;

@@ -1,5 +1,5 @@
 declare namespace jest {
-	interface Matchers<R> {
-		toHaveNoViolations(): R;
-	}
+  interface Matchers<R> {
+    toHaveNoViolations(): R;
+  }
 }

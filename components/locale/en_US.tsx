@@ -1,12 +1,12 @@
 // type
-import type { Locale } from "../locale";
+import type { Locale } from '../locale';
 
 const localeValues: Locale = {
-	locale: "en",
-	// 全局语言
-	global: {
-		placeholder: "Please select",
-	},
+  locale: 'en',
+  // 全局语言
+  global: {
+    placeholder: 'Please select',
+  },
 };
 
 export default localeValues;

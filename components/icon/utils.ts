@@ -2,9 +2,9 @@
 // Reference: https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
 // eslint-disable-next-line import/prefer-default-export
 export const svgBaseProps = {
-	width: "1em",
-	height: "1em",
-	fill: "currentColor",
-	"aria-hidden": "true",
-	focusable: "false",
+  width: '1em',
+  height: '1em',
+  fill: 'currentColor',
+  'aria-hidden': 'true',
+  focusable: 'false',
 };

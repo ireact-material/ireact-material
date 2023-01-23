@@ -1,19 +1,19 @@
-import * as React from "react";
-import { css } from "@emotion/react";
-import { Link, useLocation } from "dumi";
+import * as React from 'react';
+import { css } from '@emotion/react';
+import { Link, useLocation } from 'dumi';
 
 // hooks
-import useSiteToken from "../../../hooks/useSiteToken";
+import useSiteToken from '../../../hooks/useSiteToken';
 
-import * as utils from "../../utils";
+import * as utils from '../../utils';
 
 const useStyle = () => {
-	const { token } = useSiteToken();
+  const { token } = useSiteToken();
 
-	const { headerHeight, colorTextHeading } = token;
+  const { headerHeight, colorTextHeading } = token;
 
-	return {
-		logo: css`
+  return {
+    logo: css`
       display: inline-flex;
       align-items: center;
       height: ${headerHeight}px;
@@ -34,35 +34,29 @@ const useStyle = () => {
         vertical-align: middle;
       }
     `,
-	};
+  };
 };
 
 export interface LogoProps {
-	isZhCN: boolean;
-	location: any;
+  isZhCN: boolean;
+  location: any;
 }
 
 const Logo = ({ isZhCN }: LogoProps) => {
-	// 返回当前 location 对象
-	const { search } = useLocation();
+  // 返回当前 location 对象
+  const { search } = useLocation();
 
-	// 样式
-	const style = useStyle();
+  // 样式
+  const style = useStyle();
 
-	return (
-		<h1>
-			<Link
-				css={style.logo}
-				to={utils.getLocalizedPathname("/", isZhCN, search)}
-			>
-				<img
-					alt="logo"
-					src="https://avatars.githubusercontent.com/u/121840434?s=200&v=4"
-				/>
-				<span style={{ lineHeight: "32px" }}>IReact Material</span>
-			</Link>
-		</h1>
-	);
+  return (
+    <h1>
+      <Link css={style.logo} to={utils.getLocalizedPathname('/', isZhCN, search)}>
+        <img alt="logo" src="https://avatars.githubusercontent.com/u/121840434?s=200&v=4" />
+        <span style={{ lineHeight: '32px' }}>IReact Material</span>
+      </Link>
+    </h1>
+  );
 };
 
 export default Logo;

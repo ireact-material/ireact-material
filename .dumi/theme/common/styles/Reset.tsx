@@ -1,9 +1,9 @@
-import React from "react";
-import { css, Global } from "@emotion/react";
+import React from 'react';
+import { css, Global } from '@emotion/react';
 
 export default () => (
-	<Global
-		styles={css`
+  <Global
+    styles={css`
         html {
           direction: initial;
         }
@@ -24,5 +24,5 @@ export default () => (
           flex-direction: column;
         }
       `}
-	/>
+  />
 );

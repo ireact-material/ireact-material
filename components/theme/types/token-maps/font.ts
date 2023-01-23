@@ -1,4 +1,4 @@
 export interface FontMapToken {
-	// LineHeight
-	lineHeight: number;
+  // LineHeight
+  lineHeight: number;
 }

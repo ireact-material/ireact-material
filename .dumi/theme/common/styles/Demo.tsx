@@ -1,13 +1,13 @@
-import { css, Global } from "@emotion/react";
-import React from "react";
-import useSiteToken from "../../../hooks/useSiteToken";
+import { css, Global } from '@emotion/react';
+import React from 'react';
+import useSiteToken from '../../../hooks/useSiteToken';
 
 export default () => {
-	const { token } = useSiteToken();
+  const { token } = useSiteToken();
 
-	return (
-		<Global
-			styles={css`
+  return (
+    <Global
+      styles={css`
         .code-box {
           position: relative;
           display: inline-block;
@@ -213,6 +213,6 @@ export default () => {
           }
         }
       `}
-		/>
-	);
+    />
+  );
 };

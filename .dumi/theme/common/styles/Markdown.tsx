@@ -1,14 +1,14 @@
-import React from "react";
-import { css, Global } from "@emotion/react";
+import React from 'react';
+import { css, Global } from '@emotion/react';
 
-import useSiteToken from "../../../hooks/useSiteToken";
+import useSiteToken from '../../../hooks/useSiteToken';
 
 export default () => {
-	const { token } = useSiteToken();
+  const { token } = useSiteToken();
 
-	return (
-		<Global
-			styles={css`
+  return (
+    <Global
+      styles={css`
         .markdown {
           color: ${token.colorText};
           font-size: 14px;
@@ -151,7 +151,7 @@ export default () => {
 
               &:nth-of-type(3) {
                 width: 22%;
-                color: ${token["magenta-7"]};
+                color: ${token['magenta-7']};
                 font-size: ${Math.max(token.fontSize - 1, 12)}px;
               }
 
@@ -175,7 +175,54 @@ export default () => {
             }
           }
         }
+
+        .markdown blockquote {
+          margin: 1em 0;
+          padding-left: 0.8em;
+          color: ${token.colorTextSecondary};
+          font-size: 90%;
+          border-left: 4px solid ${token.colorSplit};
+
+          .rtl & {
+            padding-right: 0.8em;
+            padding-left: 0;
+            border-right: 4px solid ${token.colorSplit};
+            border-left: none;
+          }
+        }
+
+        .markdown blockquote p {
+          margin: 0;
+        }
+
+        .markdown ul > li {
+          margin-left: 20px;
+          padding-left: 4px;
+          list-style-type: circle;
+
+          .rtl & {
+            margin-right: 20px;
+            margin-left: 0;
+            padding-right: 4px;
+            padding-left: 0;
+          }
+
+          &:empty {
+            display: none;
+          }
+        }
+
+        .markdown ol > li {
+          margin-left: 20px;
+          padding-left: 4px;
+          list-style-type: decimal;
+        }
+
+        .markdown ul > li > p,
+        .markdown ol > li > p {
+          margin: 0.2em 0;
+        }
       `}
-		/>
-	);
+    />
+  );
 };

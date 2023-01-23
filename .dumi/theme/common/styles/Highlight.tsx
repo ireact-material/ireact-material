@@ -1,13 +1,13 @@
-import React from "react";
-import { css, Global } from "@emotion/react";
-import useSiteToken from "../../../hooks/useSiteToken";
+import React from 'react';
+import { css, Global } from '@emotion/react';
+import useSiteToken from '../../../hooks/useSiteToken';
 
 export default () => {
-	const { token } = useSiteToken();
+  const { token } = useSiteToken();
 
-	return (
-		<Global
-			styles={css`
+  return (
+    <Global
+      styles={css`
         /**
          * prism.js default theme for JavaScript, CSS and HTML
          * Based on dabblet (http://dabblet.com)
@@ -152,6 +152,6 @@ export default () => {
           }
         }
       `}
-		/>
-	);
+    />
+  );
 };

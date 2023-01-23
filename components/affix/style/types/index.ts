@@ -1,5 +1,5 @@
-import type { FullToken } from "../../../theme/internal";
+import type { FullToken } from '../../../theme/internal';
 
-export interface AffixToken extends FullToken<"Affix"> {
-	zIndexPopup: number;
+export interface AffixToken extends FullToken<'Affix'> {
+  zIndexPopup: number;
 }

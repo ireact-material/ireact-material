@@ -1,4 +1,4 @@
-import rcWarning, { resetWarned } from "rc-util/lib/warning";
+import rcWarning, { resetWarned } from 'rc-util/lib/warning';
 
 export { resetWarned };
 export function noop() {}
@@ -10,10 +10,10 @@ type Warning = (valid: boolean, component: string, message?: string) => void;
 let warning: Warning = noop;
 
 // 错误提示
-if (process.env.NODE_ENV !== "production") {
-	warning = (valid, component, message) => {
-		rcWarning(valid, `[ireact: ${component}] ${message}`);
-	};
+if (process.env.NODE_ENV !== 'production') {
+  warning = (valid, component, message) => {
+    rcWarning(valid, `[ireact: ${component}] ${message}`);
+  };
 }
 
 export default warning;

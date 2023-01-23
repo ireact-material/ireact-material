@@ -2,8 +2,7 @@ declare const CSSINJS_STATISTIC: any;
 
 // 不是生产环境
 const enableStatistic =
-	process.env.NODE_ENV !== "production" ||
-	typeof CSSINJS_STATISTIC !== "undefined";
+  process.env.NODE_ENV !== 'production' || typeof CSSINJS_STATISTIC !== 'undefined';
 
 // 记录
 let recording = true;
@@ -16,38 +15,38 @@ let recording = true;
  * @returns
  */
 export function mergeToken<T extends object>(...objs: Partial<T>[]): T {
-	// 不是生产环境
-	if (!enableStatistic) {
-		return Object.assign({}, ...objs);
-	}
+  // 不是生产环境
+  if (!enableStatistic) {
+    return Object.assign({}, ...objs);
+  }
 
-	// 不开启记录
-	recording = false;
+  // 不开启记录
+  recording = false;
 
-	const ret = {} as T;
+  const ret = {} as T;
 
-	objs.forEach((obj) => {
-		const keys = Object.keys(obj);
+  objs.forEach((obj) => {
+    const keys = Object.keys(obj);
 
-		keys.forEach((key) => {
-			Object.defineProperty(ret, key, {
-				configurable: true,
-				enumerable: true,
-				get: () => (obj as any)[key],
-			});
-		});
-	});
+    keys.forEach((key) => {
+      Object.defineProperty(ret, key, {
+        configurable: true,
+        enumerable: true,
+        get: () => (obj as any)[key],
+      });
+    });
+  });
 
-	// 开启记录
-	recording = true;
+  // 开启记录
+  recording = true;
 
-	return ret;
+  return ret;
 }
 
 // 统计使用了那些公共变量对象
 export const statistic: Record<
-	string,
-	{ global: string[]; component: Record<string, string | number> }
+  string,
+  { global: string[]; component: Record<string, string | number> }
 > = {};
 
 function noop() {}
@@ -59,47 +58,45 @@ function noop() {}
  * @returns
  */
 export default function statisticToken<T extends object>(token: T) {
-	// 公共变量 key name
-	let tokenKeys: Set<string> | undefined;
+  // 公共变量 key name
+  let tokenKeys: Set<string> | undefined;
 
-	let proxy = token;
+  let proxy = token;
 
-	let flush: (
-		componentName: string,
-		componentToken: Record<string, string | number>,
-	) => void = noop;
+  let flush: (componentName: string, componentToken: Record<string, string | number>) => void =
+    noop;
 
-	// 启用统计
-	if (enableStatistic) {
-		// 存储任何类型的唯一值
-		tokenKeys = new Set<string>();
+  // 启用统计
+  if (enableStatistic) {
+    // 存储任何类型的唯一值
+    tokenKeys = new Set<string>();
 
-		proxy = new Proxy(token, {
-			get(obj: any, prop: any) {
-				// 可以统计
-				if (recording) {
-					tokenKeys!.add(prop);
-				}
+    proxy = new Proxy(token, {
+      get(obj: any, prop: any) {
+        // 可以统计
+        if (recording) {
+          tokenKeys!.add(prop);
+        }
 
-				return obj[prop];
-			},
-		});
+        return obj[prop];
+      },
+    });
 
-		// 统计方法
-		flush = (
-			// 组件名称
-			componentName,
-			// 组件使用的公共变量
-			componentToken,
-		) => {
-			statistic[componentName] = {
-				// 变量名称
-				global: Array.from(tokenKeys!),
-				// 组件名称
-				component: componentToken,
-			};
-		};
-	}
+    // 统计方法
+    flush = (
+      // 组件名称
+      componentName,
+      // 组件使用的公共变量
+      componentToken,
+    ) => {
+      statistic[componentName] = {
+        // 变量名称
+        global: Array.from(tokenKeys!),
+        // 组件名称
+        component: componentToken,
+      };
+    };
+  }
 
-	return { token: proxy, keys: tokenKeys, flush };
+  return { token: proxy, keys: tokenKeys, flush };
 }

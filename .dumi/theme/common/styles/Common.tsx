@@ -1,9 +1,9 @@
-import React from "react";
-import { css, Global } from "@emotion/react";
+import React from 'react';
+import { css, Global } from '@emotion/react';
 
 export default () => (
-	<Global
-		styles={css`
+  <Global
+    styles={css`
       body,
       div,
       dl,
@@ -55,25 +55,6 @@ export default () => (
         vertical-align: middle;
         border-style: none;
       }
-
-      a {
-        text-decoration: none;
-        outline: 0px;
-        color: currentColor;
-        will-change: color;
-        transition: color 0.2s ease 0s;
-        background: 0px 0px;
-        cursor: pointer;
-      }
-
-      *,
-      ::after,
-      ::before {
-        box-sizing: border-box;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
     `}
-	/>
+  />
 );

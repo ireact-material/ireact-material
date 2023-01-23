@@ -1,3 +1,3 @@
-require("./index-style-only");
+require('./index-style-only');
 
-module.exports = require("./components");
+module.exports = require('./components');
