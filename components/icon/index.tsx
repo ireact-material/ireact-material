@@ -1,5 +1,5 @@
-import * as React from 'react';
 import classNames from 'classnames';
+import * as React from 'react';
 
 // 全局化配置
 import { ConfigContext } from '../config-provider';

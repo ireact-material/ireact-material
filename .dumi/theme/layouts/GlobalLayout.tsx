@@ -1,17 +1,19 @@
 import React, { startTransition, useCallback, useEffect, useMemo } from 'react';
 
-import { useOutlet, useSearchParams, createSearchParams } from 'dumi';
 import { createCache, StyleProvider } from '@ant-design/cssinjs';
+import { createSearchParams, useOutlet, useSearchParams } from 'dumi';
 import { ConfigProvider, theme as Theme } from 'ireact-material';
 
 import SiteContext from '../slots/SiteContext';
 
 // type
-import type { SiteContextProps } from '../slots/SiteContext';
 import type { ThemeName } from '../common/ThemeSwitch';
+import type { SiteContextProps } from '../slots/SiteContext';
 
 type Entries<T> = { [K in keyof T]: [K, T[K]] }[keyof T][];
 type SiteState = Partial<Omit<SiteContextProps, 'updateSiteContext'>>;
+
+const RESPONSIVE_MOBILE = 768;
 
 // 样式缓存
 const styleCache = createCache();
@@ -82,6 +84,11 @@ const GlobalLayout: React.FC = () => {
     [isMobile, updateSiteConfig, theme],
   );
 
+  // 是否是移动端
+  const updateMobileMode = () => {
+    updateSiteConfig({ isMobile: window.innerWidth < RESPONSIVE_MOBILE });
+  };
+
   useEffect(() => {
     const _theme = searchParams.getAll('theme') as ThemeName[];
 
@@ -91,7 +98,17 @@ const GlobalLayout: React.FC = () => {
         theme: _theme,
         isMobile: false,
       });
+
+      // 是否是移动端
+      updateMobileMode();
     });
+
+    // 是否是移动端
+    window.addEventListener('resize', updateMobileMode);
+
+    return () => {
+      window.removeEventListener('resize', updateMobileMode);
+    };
   }, []);
 
   return (

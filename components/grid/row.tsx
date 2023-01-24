@@ -1,5 +1,5 @@
-import * as React from 'react';
 import classNames from 'classnames';
+import * as React from 'react';
 
 // 全局化配置
 import { ConfigContext } from '../config-provider';
@@ -15,7 +15,7 @@ import { useRowStyle } from './style';
 // type
 
 // row props | 间隔
-import type { RowProps, Gap, Gutter } from './types/row';
+import type { Gap, Gutter, RowProps } from './types/row';
 
 // 响应尺寸 | 使用的尺寸
 import type { Breakpoint, ScreenMap } from '../util/responsiveObserver';

@@ -1,6 +1,6 @@
 ---
 order: 0
-title: IReact Material of React
+title: 安装
 ---
 
 `ireact-material` 是基于 Google Material 设计体系的 React UI 组件库

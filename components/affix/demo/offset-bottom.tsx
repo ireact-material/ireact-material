@@ -1,5 +1,5 @@
-import React from 'react';
 import type { CSSProperties } from 'react';
+import React from 'react';
 
 import { Affix } from 'ireact-material';
 

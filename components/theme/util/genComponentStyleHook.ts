@@ -15,10 +15,10 @@ import { mergeToken, statisticToken, useToken } from '../internal';
 import type { UseComponentStyleResult } from '../internal';
 import type { GlobalToken } from '../types';
 import type {
-  // 组件令牌
-  OverrideComponent,
   // 全局组建变量
   GlobalTokenWithComponent,
+  // 组件令牌
+  OverrideComponent,
   // 组件令牌
   OverrideTokenWithoutDerivative,
   // 样式class

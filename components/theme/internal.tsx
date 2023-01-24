@@ -1,8 +1,8 @@
 import React from 'react';
 
 // cssinjs
-import { createTheme, useCacheToken, useStyleRegister } from '@ant-design/cssinjs';
 import type { CSSInterpolation, Theme } from '@ant-design/cssinjs';
+import { createTheme, useCacheToken, useStyleRegister } from '@ant-design/cssinjs';
 
 // 组件库版本
 import version from '../version';
@@ -24,9 +24,7 @@ import statisticToken, { mergeToken, statistic } from './util/statistic';
 
 // type
 // 组件完整的变量
-import type { FullToken } from './util/genComponentStyleHook';
 import type {
-  // 别名变量
   AliasToken,
   // 别名变量 & 组件的名称
   GlobalToken,
@@ -39,6 +37,7 @@ import type {
   // 基础变量
   SeedToken,
 } from './types';
+import type { FullToken } from './util/genComponentStyleHook';
 
 // 组件最终样式
 export type UseComponentStyleResult = [(node: React.ReactNode) => React.ReactElement, string];
@@ -50,7 +49,6 @@ export type GenerateStyle<
 > = (token: ComponentToken) => ReturnType;
 
 export type {
-  // 基础变量
   SeedToken,
   // 别名变量
   AliasToken,
@@ -58,6 +56,22 @@ export type {
   PresetColorType,
   // 组件完整的变量
   FullToken,
+};
+export {
+  // 预设颜色
+  presetColors,
+  // statistic方法
+  // 统计使用了那些公共变量对象
+  statistic,
+  // 用于统计使用了那些公共变量
+  statisticToken,
+  // 合并变量
+  mergeToken,
+  // hooks方法
+  // 向全局样式表注册一个样式
+  useStyleRegister,
+  // 整理组件样式hook
+  genComponentStyleHook,
 };
 
 // 创建主题
@@ -135,20 +149,3 @@ export function useToken(): [Theme<SeedToken, MapToken>, GlobalToken, string] {
     hashed ? hashId : '',
   ];
 }
-
-export {
-  // 预设颜色
-  presetColors,
-  // statistic方法
-  // 统计使用了那些公共变量对象
-  statistic,
-  // 用于统计使用了那些公共变量
-  statisticToken,
-  // 合并变量
-  mergeToken,
-  // hooks方法
-  // 向全局样式表注册一个样式
-  useStyleRegister,
-  // 整理组件样式hook
-  genComponentStyleHook,
-};

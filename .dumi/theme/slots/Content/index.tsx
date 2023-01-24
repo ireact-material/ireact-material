@@ -1,8 +1,9 @@
-import React from 'react';
-import type { ReactNode } from 'react';
+import { css } from '@emotion/react';
 import { useRouteMeta } from 'dumi';
 import { Col } from 'ireact-material';
-import { css } from '@emotion/react';
+import React from 'react';
+
+import type { ReactNode } from 'react';
 
 const useStyle = () => ({
   articleWrapper: css`
@@ -18,8 +19,8 @@ const Content: React.FC<{ children: ReactNode }> = ({ children }) => {
   const styles = useStyle();
 
   return (
-    // <Col xxl={20} xl={19} lg={18} md={18} sm={24} xs={24}>
-    <Col xxl={24} xl={24} lg={24} md={24} sm={24} xs={24}>
+    <Col xxl={20} xl={19} lg={18} md={18} sm={24} xs={24}>
+    {/* <Col xxl={24} xl={24} lg={24} md={24} sm={24} xs={24}> */}
       <article css={styles.articleWrapper}>
         {/* 标题 */}
         <h1 style={{ fontSize: 30 }}>

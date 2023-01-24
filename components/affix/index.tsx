@@ -1,7 +1,7 @@
-import * as React from 'react';
+import classNames from 'classnames';
 import ResizeObserver from 'rc-resize-observer';
 import omit from 'rc-util/lib/omit';
-import classNames from 'classnames';
+import * as React from 'react';
 
 import { ConfigContext } from '../config-provider';
 import throttleByAnimationFrame from '../util/throttleByAnimationFrame';
@@ -10,16 +10,16 @@ import throttleByAnimationFrame from '../util/throttleByAnimationFrame';
 import useStyle from './style';
 import {
   addObserveTarget,
-  removeObserveTarget,
-  getTargetRect,
-  getFixedTop,
   getFixedBottom,
+  getFixedTop,
+  getTargetRect,
+  removeObserveTarget,
 } from './utils';
 
 // type
-import { AffixStatus } from './types/affix';
-import type { AffixState } from './types/affix';
 import type { ConfigConsumerProps } from '../config-provider';
+import type { AffixState } from './types/affix';
+import { AffixStatus } from './types/affix';
 
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;

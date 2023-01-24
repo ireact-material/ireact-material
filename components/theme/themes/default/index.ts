@@ -14,7 +14,7 @@ import genFontMapToken from '../shared/genFontMapToken';
 import { generateColorPalettes, generateNeutralColorPalettes } from './colors';
 
 // type
-import type { SeedToken, MapToken, PresetColorType, ColorPalettes } from '../../types';
+import type { ColorPalettes, MapToken, PresetColorType, SeedToken } from '../../types';
 
 /**
  * 导出梯度变量

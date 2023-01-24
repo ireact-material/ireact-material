@@ -10,7 +10,7 @@ const RowJustify = [
   'space-evenly',
 ] as const;
 
-type ResponsiveJustify = ResponsiveLike<typeof RowJustify[number]>;
+type ResponsiveJustify = ResponsiveLike<(typeof RowJustify)[number]>;
 
 type Responsive = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
@@ -19,7 +19,7 @@ type ResponsiveLike<T> = {
 };
 
 const RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const;
-type ResponsiveAligns = ResponsiveLike<typeof RowAligns[number]>;
+type ResponsiveAligns = ResponsiveLike<(typeof RowAligns)[number]>;
 
 // row props
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -29,9 +29,9 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
   // 栅格间隔
   gutter?: Gutter | [Gutter, Gutter];
   // 水平排列方式
-  justify?: typeof RowJustify[number] | ResponsiveJustify;
+  justify?: (typeof RowJustify)[number] | ResponsiveJustify;
   // 垂直对齐方式
-  align?: typeof RowAligns[number] | ResponsiveAligns;
+  align?: (typeof RowAligns)[number] | ResponsiveAligns;
 }
 
 // 栅格间隔

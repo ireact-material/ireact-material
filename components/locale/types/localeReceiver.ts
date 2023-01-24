@@ -4,7 +4,7 @@ import type { Locale } from '../index';
 export type LocaleComponentName = Exclude<keyof Locale, 'locale'>;
 
 // 多语言props
-export interface LocaleReceiverProps<C extends LocaleComponentName = LocaleComponentName,> {
+export interface LocaleReceiverProps<C extends LocaleComponentName = LocaleComponentName> {
   // 组件名称
   componentName?: C;
   // 使用的语言

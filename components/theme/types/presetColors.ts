@@ -16,7 +16,7 @@ export const presetColors = [
 ] as const;
 
 // 颜色key
-type PresetColorKey = typeof presetColors[number];
+type PresetColorKey = (typeof presetColors)[number];
 
 // 颜色类型
 export type PresetColorType = Record<PresetColorKey, string>;

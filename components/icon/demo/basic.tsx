@@ -1,5 +1,5 @@
-import React from 'react';
 import { Icon } from 'ireact-material';
+import React from 'react';
 
 const App: React.FC = () => (
   <div>

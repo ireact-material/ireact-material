@@ -1,18 +1,17 @@
 import * as React from 'react';
-import LocaleContext from './context';
 import defaultLocaleData from '../locale/en_US';
+import LocaleContext from './context';
 
 // types
 import type {
-  // 对应使用多语言组件的名称
   LocaleComponentName,
   // 多语言props
   LocaleReceiverProps,
 } from './types/localeReceiver';
 
 // 当前加载的语言环境
-import type { LocaleContextProps } from './types/context';
 import type { Locale } from './index';
+import type { LocaleContextProps } from './types/context';
 
 // 加载对应的语言
 const LocaleReceiver = <C extends LocaleComponentName = LocaleComponentName>(

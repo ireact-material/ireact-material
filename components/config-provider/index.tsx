@@ -1,9 +1,9 @@
-import * as React from 'react';
-import type { ReactElement } from 'react';
 import useMemo from 'rc-util/lib/hooks/useMemo';
+import type { ReactElement } from 'react';
+import * as React from 'react';
 
 // 全局化配置context
-import { ConfigContext, ConfigConsumer, defaultIconPrefixCls } from './context';
+import { ConfigConsumer, ConfigContext, defaultIconPrefixCls } from './context';
 
 // 设置样式
 import useStyle from './style';
@@ -25,7 +25,6 @@ import useTheme from './hooks/useTheme';
 import type { ConfigConsumerProps, Theme } from './types/context';
 // type
 import type {
-  // 全局化配置
   ConfigProviderProps,
   // 传递到子组件的配置
   ProviderChildrenProps,

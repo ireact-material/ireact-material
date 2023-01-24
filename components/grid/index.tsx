@@ -1,6 +1,6 @@
-import Row from './row';
 import Col from './col';
 import useInternalBreakpoint from './hooks/useBreakpoint';
+import Row from './row';
 
 export { Row, Col };
 

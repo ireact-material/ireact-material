@@ -1,6 +1,6 @@
 // type
-import type { GenerateColorMap, GenerateNeutralColorMap } from '../colorMap';
 import type { SeedToken } from '../../types';
+import type { GenerateColorMap, GenerateNeutralColorMap } from '../colorMap';
 
 interface PaletteGenerators {
   generateColorPalettes: GenerateColorMap;

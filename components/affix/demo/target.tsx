@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import type { CSSProperties } from 'react';
 import { Affix } from 'ireact-material';
+import type { CSSProperties } from 'react';
 
 const style: CSSProperties = {
   width: '250px',

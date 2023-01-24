@@ -1,10 +1,5 @@
-import type {
-  ConfigConsumerProps,
-  ThemeConfig,
-  CSPConfig,
-  // DirectionType,
-} from './context';
 import type { Locale } from '../../locale';
+import type { ConfigConsumerProps, CSPConfig, ThemeConfig } from './context';
 import type { SizeType } from './sizeContext';
 
 // 全局化配置

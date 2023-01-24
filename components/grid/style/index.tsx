@@ -5,7 +5,7 @@ import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 
 // type
 // 生成样式 | 组件完整的变量
-import type { GenerateStyle, FullToken } from '../../theme/internal';
+import type { FullToken, GenerateStyle } from '../../theme/internal';
 
 interface GridRowToken extends FullToken<'Grid'> {}
 
