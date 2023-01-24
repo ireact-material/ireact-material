@@ -34,7 +34,7 @@ const App = () => {
     window.addEventListener(
       'scroll',
       () => {
-        affixRef.current.updatePosition();
+        affixRef.current && affixRef.current.updatePosition();
       },
       true,
     );
